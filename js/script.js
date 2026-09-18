@@ -129,7 +129,7 @@
   });
 })();
 
-// Retro keyboard click sound on every button (synthesised, so no audio files to load)
+// Click sound on every button (synthesised, so no audio files to load)
 (function () {
   var AudioCtx = window.AudioContext || window.webkitAudioContext;
   if (!AudioCtx) return;
@@ -143,47 +143,45 @@
     } catch (e) {
       return false;
     }
-    // 60ms of white noise, reused for every click
-    noise = ctx.createBuffer(1, Math.floor(ctx.sampleRate * 0.06), ctx.sampleRate);
+    // 30ms of white noise, reused for every click
+    noise = ctx.createBuffer(1, Math.floor(ctx.sampleRate * 0.03), ctx.sampleRate);
     var data = noise.getChannelData(0);
     for (var i = 0; i < data.length; i++) data[i] = Math.random() * 2 - 1;
     return true;
   }
 
-  // "down" is the deeper clack of the key bottoming out, "up" is the lighter release
-  function click(kind) {
+  // a short, crisp mouse-button "tick": a snap of high noise over a tiny pitched pop
+  function click() {
     if (!setup()) return;
     if (ctx.state === "suspended") ctx.resume();
     var t = ctx.currentTime;
-    var down = kind === "down";
-    var vary = 0.92 + Math.random() * 0.16;
+    var vary = 0.95 + Math.random() * 0.1;
 
     var src = ctx.createBufferSource();
     src.buffer = noise;
-    var band = ctx.createBiquadFilter();
-    band.type = "bandpass";
-    band.frequency.value = (down ? 2600 : 3600) * vary;
-    band.Q.value = 1.1;
+    var hp = ctx.createBiquadFilter();
+    hp.type = "highpass";
+    hp.frequency.value = 3000 * vary;
     var nGain = ctx.createGain();
-    nGain.gain.setValueAtTime(down ? 0.55 : 0.22, t);
-    nGain.gain.exponentialRampToValueAtTime(0.001, t + (down ? 0.035 : 0.022));
-    src.connect(band);
-    band.connect(nGain);
+    nGain.gain.setValueAtTime(0.32, t);
+    nGain.gain.exponentialRampToValueAtTime(0.001, t + 0.018);
+    src.connect(hp);
+    hp.connect(nGain);
     nGain.connect(ctx.destination);
     src.start(t);
-    src.stop(t + 0.06);
+    src.stop(t + 0.03);
 
     var osc = ctx.createOscillator();
-    osc.type = "square";
-    osc.frequency.setValueAtTime((down ? 190 : 260) * vary, t);
-    osc.frequency.exponentialRampToValueAtTime(down ? 70 : 120, t + 0.04);
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(1800 * vary, t);
+    osc.frequency.exponentialRampToValueAtTime(900, t + 0.025);
     var oGain = ctx.createGain();
-    oGain.gain.setValueAtTime(down ? 0.11 : 0.04, t);
-    oGain.gain.exponentialRampToValueAtTime(0.001, t + 0.045);
+    oGain.gain.setValueAtTime(0.16, t);
+    oGain.gain.exponentialRampToValueAtTime(0.001, t + 0.03);
     osc.connect(oGain);
     oGain.connect(ctx.destination);
     osc.start(t);
-    osc.stop(t + 0.06);
+    osc.stop(t + 0.04);
   }
 
   function isButton(e) {
@@ -191,12 +189,11 @@
     return el && !el.disabled && el.getAttribute("aria-disabled") !== "true";
   }
 
-  // mouse and touch: clack on press, release on lift
-  document.addEventListener("pointerdown", function (e) { if (isButton(e)) click("down"); });
-  document.addEventListener("pointerup", function (e) { if (isButton(e)) click("up"); });
+  // mouse and touch: click on press
+  document.addEventListener("pointerdown", function (e) { if (isButton(e)) click(); });
   // keyboard activation (Enter/Space) fires a click with no pointer, so sound it here
   document.addEventListener("click", function (e) {
-    if (e.detail === 0 && isButton(e)) click("down");
+    if (e.detail === 0 && isButton(e)) click();
   });
 })();
 
