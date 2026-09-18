@@ -1,10 +1,6 @@
 # Internal notes and design exports (not part of the website)
-CLAUDE.md exe.md
-offer.md
-ideal-customer-profile.md
-DESIGN.md
-code.html
-screen.png
+docs/
+design/
 
 # macOS
 .DS_Store

@@ -1,5 +1,5 @@
 /* Flowlyy: Archival Swiss AI design system
-   Source of truth: DESIGN.md. Zero radius, zero shadow, hairline structure. */
+   Source of truth: design/DESIGN.md. Zero radius, zero shadow, hairline structure. */
 
 :root {
   --canvas: #ffffff;
@@ -765,7 +765,7 @@ main {
 
 .divider {
   height: 5rem;
-  background: var(--canvas) url("assets/divider.svg") repeat-x center / 14px 9px;
+  background: var(--canvas) url("../assets/patterns/divider.svg") repeat-x center / 14px 9px;
 }
 
 .divider--slim {
