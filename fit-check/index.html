@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="See if your roofing company is a fit for Flowlyy: 30 qualified appointments in 60 days.">
+  <meta name="theme-color" content="#ffffff">
+  <title>AI CRM qualification | Flowlyy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Geist+Pixel&display=swap" rel="stylesheet">
+  <link rel="icon" href="assets/flowlyy-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../" aria-label="Flowlyy home">
+      <img src="assets/flowlyy-mark.svg" alt="Flowlyy" width="34" height="34">
+    </a>
+  </header>
+
+  <main class="funnel-page" aria-label="Flowlyy qualification funnel">
+    <div class="funnel-card" id="funnel-card">
+      <div class="progress-track" id="progress-track" role="progressbar" aria-label="Form progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <span class="progress-fill" id="progress-fill"></span>
+      </div>
+
+      <header class="card-hero" id="card-hero">
+        <p class="timer-pill"><span aria-hidden="true">⚡</span> 30 seconds</p>
+        <h1 id="funnel-title">Fill Your Calendar With Qualified Consultations</h1>
+        <p class="hero-copy">Built for UK roofing companies that get real enquiries, but lose jobs through missed calls, slow follow-up, messy notes, or a <span class="nowrap">half-used</span> CRM.</p>
+      </header>
+
+      <form id="lead-form" novalidate>
+        <div id="step-root" aria-live="polite"></div>
+        <div class="form-actions" id="form-actions" hidden>
+          <button class="primary-button" id="continue-button" type="button">Continue <span aria-hidden="true">→</span></button>
+        </div>
+        <p class="area-note" id="area-note"><span class="area-icon" aria-hidden="true">📍</span><span><strong>One roofing company per area:</strong> we only work with one roofer in each area, so you own your market.</span></p>
+        <button class="back-link" id="back-button" type="button" hidden><span aria-hidden="true">←</span> Back</button>
+      </form>
+    </div>
+  </main>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

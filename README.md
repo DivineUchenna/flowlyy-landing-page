@@ -21,6 +21,12 @@ design/               Stitch design exports (not in the repo): DESIGN.md, code.h
 
 `docs/` and `design/` stay on your machine and are listed in `.gitignore`.
 
+## fit-check/ (generated, don't edit here)
+
+`fit-check/` is the qualification funnel that the two "Let's chat" links open (flowly.org.uk/fit-check/). It's copied from `Desktop/AI/Projects/flowlyy-consultation-funnel` by `npm run sync` in that project. Edit the funnel there, then sync; changes made directly in this folder get overwritten.
+
+`vercel.json` sets `trailingSlash: true`, so `/fit-check` redirects to `/fit-check/` and the funnel's relative paths (styles, script, logo) load correctly.
+
 ## To do before launch
 
 - Point the email forms at a real endpoint (see the TODO comments in `index.html` and `js/script.js`).
