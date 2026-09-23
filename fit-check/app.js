@@ -165,6 +165,7 @@ function bindOptions(question) {
     const value = button.dataset.value;
     document.querySelector("#step-error").textContent = "";
     if (question.type === "multi") {
+      
       const selected = new Set(answers[question.id] ?? []);
       selected.has(value) ? selected.delete(value) : selected.add(value);
       answers[question.id] = [...selected];
@@ -302,7 +303,9 @@ function renderBooking() {
 function renderBooked() {
   setMode("result");
   setProgress(100);
-  safeWrite(LEAD_KEY, { answers, tracking, qualification: "booked", bookedAt: new Date().toISOString() });
+  
+    if (typeof window.fbq === "function") window.fbq("track", "Lead");
+safeWrite(LEAD_KEY, { answers, tracking, qualification: "booked", bookedAt: new Date().toISOString() });
   root.innerHTML = `<section class="step" aria-labelledby="outcome-title">
     <div class="outcome-icon" aria-hidden="true">⚡</div>
     <p class="eyebrow">You’re booked in</p>
@@ -328,3 +331,4 @@ document.addEventListener("keydown", (event) => {
 });
 
 goTo(0, { scroll: false });
+
