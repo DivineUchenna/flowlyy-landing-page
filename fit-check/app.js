@@ -274,6 +274,11 @@ function loadCal() {
 function renderBooking() {
   saveDraft();
   safeWrite(LEAD_KEY, { answers, tracking, qualification: "qualified", preparedAt: new Date().toISOString() });
+  if (typeof window.fbq === "function") {
+  window.fbq("track", "Lead", {
+    content_name: "Roofer qualification funnel"
+  });
+}
   setMode("result");
   setProgress(100);
   const bookingUrl = buildBookingUrl(BOOKING_URL, answers, tracking);
