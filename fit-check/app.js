@@ -301,10 +301,11 @@ function renderBooking() {
 }
 
 function renderBooked() {
+    if (typeof window.fbq === "function") window.fbq("track", "Lead");
   setMode("result");
   setProgress(100);
   
-    if (typeof window.fbq === "function") window.fbq("track", "Lead");
+    
 safeWrite(LEAD_KEY, { answers, tracking, qualification: "booked", bookedAt: new Date().toISOString() });
   root.innerHTML = `<section class="step" aria-labelledby="outcome-title">
     <div class="outcome-icon" aria-hidden="true">⚡</div>
