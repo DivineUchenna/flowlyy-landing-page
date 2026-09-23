@@ -165,7 +165,7 @@ function bindOptions(question) {
     const value = button.dataset.value;
     document.querySelector("#step-error").textContent = "";
     if (question.type === "multi") {
-      
+    
       const selected = new Set(answers[question.id] ?? []);
       selected.has(value) ? selected.delete(value) : selected.add(value);
       answers[question.id] = [...selected];
