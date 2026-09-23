@@ -43,8 +43,6 @@
   var gbp = new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP", maximumFractionDigits: 0 });
   var DAYS_PER_WEEK = 5;
   var WEEKS_PER_YEAR = 46;
-  var OS_SETUP = 2000;
-  var OS_MONTHLY = 299;
   var $ = function (id) { return document.getElementById(id); };
   var num = function (el, max) {
     var v = parseFloat(el.value);
@@ -69,7 +67,7 @@
     $("calc-hoursweek").textContent = trim(hoursWeek);
     $("calc-note").textContent =
       "Every 10% of that time you get back is worth " + gbp.format(year * 0.1) + " a year. " +
-      "Operating Systems start at " + gbp.format(OS_SETUP) + " plus " + gbp.format(OS_MONTHLY) + "/month.";
+      "We scope the right system with you on the call.";
   }
 
   form.addEventListener("input", update);

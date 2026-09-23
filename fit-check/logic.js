@@ -1,13 +1,15 @@
+export const QUALIFYING_COMPANY_TYPES = new Set(["self_performing", "mixed_delivery"]);
 export const QUALIFYING_TURNOVER = new Set(["100k_250k", "250k_500k", "500k_1m", "over_1m"]);
 export const CONTACT_FIELDS = ["firstName", "lastName", "phone", "email"];
 
 const TURNOVER_LABELS = { under_100k: "Under £100,000", "100k_250k": "£100,000 to £250,000", "250k_500k": "£250,000 to £500,000", "500k_1m": "£500,000 to £1 million", over_1m: "Over £1 million" };
+const COMPANY_TYPE_LABELS = { self_performing: "Roofing company with its own roofers", mixed_delivery: "Roofing company using its own team and subcontractors", subcontracted: "All roofing work subcontracted", general_builder: "General building company that also does roofing", supplier: "Roofing supplier, manufacturer or consultant" };
+const TEAM_SIZE_LABELS = { "1_4": "1 to 4 people", "5_10": "5 to 10 people", "11_20": "11 to 20 people", over_20: "More than 20 people" };
 const WORK_LABELS = { roof_repairs: "Roof repairs", roof_replacement: "Roof replacement", flat_roofing: "Flat roofing", gutters: "Gutter repairs and installation", leadwork: "Leadwork", chimney_repairs: "Chimney repairs" };
-const INVESTMENT_LABELS = { yes: "Yes, £2,500+/month", no: "Not ready" };
-const SOURCE_LABELS = { word_of_mouth: "Word of mouth and referrals", google: "Google search or Maps", directories: "Checkatrade, MyBuilder or similar", social_ads: "Social media or paid ads", repeat: "Repeated customers", other: "Somewhere else" };
-const PAIN_LABELS = { missed_calls: "Missed or unanswered calls", slow_follow_up: "Slow lead follow-up", quote_delays: "Quotes not chased properly", pipeline_visibility: "No clear view of the pipeline", old_leads: "Old enquiries never reactivated", admin_overload: "Too much manual admin" };
+const PAIN_LABELS = { quote_delays: "Getting quotes out on time", quote_follow_up: "Chasing quotes until customers answer", missed_calls: "Answering calls while the team is on a roof", invoice_chasing: "Chasing invoices and late payments", cert_admin: "Certificates, insurance and scheme paperwork", team_admin: "Subcontractor, timesheet and payroll admin" };
 
 export function qualificationReason(answers) {
+  if (answers.companyType && !QUALIFYING_COMPANY_TYPES.has(answers.companyType)) return "companyType";
   if (answers.turnover && !QUALIFYING_TURNOVER.has(answers.turnover)) return "turnover";
   return null;
 }
@@ -41,7 +43,7 @@ export function answersUpTo(answers, questions, index) {
 }
 
 export function isQualified(answers) {
-  const required = ["turnover", "workType", "leadSources", "pains", "investment", ...CONTACT_FIELDS];
+  const required = ["companyType", "turnover", "teamSize", "workType", "pains", ...CONTACT_FIELDS];
   const complete = required.every((key) => Array.isArray(answers[key]) ? answers[key].length > 0 : Boolean(answers[key]));
   return complete && qualificationReason(answers) === null;
 }
@@ -79,11 +81,11 @@ export function leadSummary(answers) {
   const list = (values, labels) => (values ?? []).map((value) => labels[value] ?? value).join(", ") || "-";
   return [
     "Flowlyy fit check",
+    `Company type: ${COMPANY_TYPE_LABELS[answers.companyType] ?? answers.companyType ?? "-"}`,
     `Turnover: ${TURNOVER_LABELS[answers.turnover] ?? answers.turnover ?? "-"}`,
+    `Team size: ${TEAM_SIZE_LABELS[answers.teamSize] ?? answers.teamSize ?? "-"}`,
     `Type of work: ${list(answers.workType, WORK_LABELS)}`,
-    `Enquiries come from: ${list(answers.leadSources, SOURCE_LABELS)}`,
-    `Where money slips: ${list(answers.pains, PAIN_LABELS)}`,
-    `Ready to invest £2,500/month: ${INVESTMENT_LABELS[answers.investment] ?? "-"}`,
+    `What they want off their plate: ${list(answers.pains, PAIN_LABELS)}`,
     `Phone: ${answers.phone ?? "-"}`
   ].join("\n");
 }

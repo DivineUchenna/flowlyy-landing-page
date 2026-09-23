@@ -489,6 +489,10 @@ main {
 
 .hero h1 {
   max-width: 72rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1.02;
 }
 
 .hero__lede {
@@ -1685,7 +1689,7 @@ td.act a:hover {
 }
 
 .tier__name {
-  font-family: var(--font-body);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-weight: 400;
   font-size: 1.5rem;
   line-height: 1.1;

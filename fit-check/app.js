@@ -7,34 +7,30 @@ const CAL_EMBED_SCRIPT = "https://app.cal.com/embed/embed.js";
 const DRAFT_KEY = "flowlyy-consultation-funnel-draft";
 const LEAD_KEY = "flowlyy-consultation-funnel-lead";
 
-// Ordered by priority: revenue qualifier, context, pain, then the money question just before
-// contact. Only turnover under £100k disqualifies; every other answer moves on.
+// Ask the hard qualifiers first, then gather enough context to make the discovery call useful.
 const questions = [
   {
-    id: "turnover", title: "What’s your approximate annual revenue?", copy: "A rough range is fine. This helps us plan the right campaign for your size.", type: "single",
+    id: "companyType", title: "Which best describes your business?", type: "single",
+    options: [["self_performing", "A roofing company with our own roofers"], ["mixed_delivery", "A roofing company using our team and subcontractors"], ["subcontracted", "We subcontract all roofing work"], ["general_builder", "A general building company that also does roofing"], ["supplier", "A roofing supplier, manufacturer or consultant"]]
+  },
+  {
+    id: "turnover", title: "What’s your approximate annual turnover?", copy: "A rough range is fine. It helps us recommend something that fits the size of your firm.", type: "single",
     options: [["under_100k", "Under £100,000 per year"], ["100k_250k", "£100,000 to £250,000 per year"], ["250k_500k", "£250,000 to £500,000 per year"], ["500k_1m", "£500,000 to £1 million per year"], ["over_1m", "Over £1 million per year"]]
+  },
+  {
+    id: "teamSize", title: "How many people work in the business?", copy: "Include yourself, office staff and roofers on the tools.", type: "single",
+    options: [["1_4", "1 to 4 people"], ["5_10", "5 to 10 people"], ["11_20", "11 to 20 people"], ["over_20", "More than 20 people"]]
   },
   {
     id: "workType", title: "What kind of work do you mainly do?", copy: "Choose all that apply.", type: "multi",
     options: [["roof_repairs", "Roof repairs"], ["roof_replacement", "Roof replacement"], ["flat_roofing", "Flat roofing"], ["gutters", "Gutter repairs and installation"], ["leadwork", "Leadwork"], ["chimney_repairs", "Chimney repairs"]]
   },
   {
-    id: "leadSources", title: "Where do most of your enquiries come from?", copy: "Choose all that apply.", type: "multi",
-    options: [["word_of_mouth", "Word of mouth and referrals"], ["google", "Google search or Maps"], ["directories", "Checkatrade, MyBuilder or similar"], ["social_ads", "Social media or paid ads"], ["repeat", "Repeated customers"], ["other", "Somewhere else"]]
+    id: "pains", title: "What do you want off your plate?", copy: "Choose all that apply.", type: "multi",
+    options: [["quote_delays", "Getting quotes out on time"], ["quote_follow_up", "Chasing quotes until customers answer"], ["missed_calls", "Answering calls while the team is on a roof"], ["invoice_chasing", "Chasing invoices and late payments"], ["cert_admin", "Certificates, insurance and scheme paperwork"], ["team_admin", "Subcontractor, timesheet and payroll admin"]]
   },
   {
-    id: "pains", title: "Where is money slipping through?", copy: "Choose all that apply.", type: "multi",
-    options: [["missed_calls", "Missed or unanswered calls"], ["slow_follow_up", "Slow lead follow-up"], ["quote_delays", "Quotes not chased properly"], ["pipeline_visibility", "No clear view of the pipeline"], ["old_leads", "Old enquiries never reactivated"], ["admin_overload", "Too much manual admin"]]
-  },
-  {
-    id: "investment",
-    // The promise sits above the question so "these results" has something to point at.
-    promise: "We get roofing companies <strong>30 qualified appointments in 60 days</strong>, or we keep working for free until you do.",
-    title: "To achieve these results, are you ready to invest £2,500 per month into your business growth?", type: "single",
-    options: [["yes", "Yes, I’m prepared to invest £2,500+ per month"], ["no", "No, I’m not ready to invest in growing my business"]]
-  },
-  {
-    id: "contact", title: "Where do we send your consult plan, and how do we call you?", type: "contact",
+    id: "contact", title: "Where do we send your plan, and how do we call you?", type: "contact",
     fields: [
       { id: "firstName", label: "First name", type: "text", autocomplete: "given-name", placeholder: "First name" },
       { id: "lastName", label: "Last name", type: "text", autocomplete: "family-name", placeholder: "Last name" },
@@ -253,6 +249,7 @@ function renderDisqualified(reason) {
   setMode("result");
   setProgress(100);
   const messages = {
+    companyType: "Right now Flowlyy is built for roofing companies that carry out jobs with their own team.",
     turnover: "Right now we only work with roofing companies turning over £100,000 or more a year."
   };
   root.innerHTML = `<section class="step" aria-labelledby="outcome-title">
@@ -282,7 +279,7 @@ function renderBooking() {
   root.innerHTML = `<section class="step" aria-labelledby="outcome-title">
     <p class="eyebrow">You look like a strong fit</p>
     <h2 id="outcome-title">Thanks, ${escapeHtml(answers.firstName)}. Pick a time for your call.</h2>
-    <p class="step-copy">Your details are already filled in. Choose a slot and we’ll send your consult plan to ${escapeHtml(answers.email)}.</p>
+    <p class="step-copy">Your details are already filled in. Choose a slot and we’ll send your plan to ${escapeHtml(answers.email)}.</p>
     <div class="cal-embed" id="cal-embed" aria-label="Book your discovery call"></div>
     <p class="integration-note">Calendar not loading? <a href="${escapeHtml(bookingUrl)}" target="_blank" rel="noopener">Open it in a new tab</a>.</p>
     <div class="outcome-actions"><button class="back-button" id="edit-details" type="button">← Edit my details</button></div>
@@ -310,7 +307,7 @@ function renderBooked() {
     <div class="outcome-icon" aria-hidden="true">⚡</div>
     <p class="eyebrow">You’re booked in</p>
     <h2 id="outcome-title">See you on the call, ${escapeHtml(answers.firstName)}.</h2>
-    <p class="lede">A calendar invite is on its way to ${escapeHtml(answers.email)}. We’ll map where leads are getting lost and send your consult plan after the call.</p>
+    <p class="lede">A calendar invite is on its way to ${escapeHtml(answers.email)}. We’ll map where quotes and admin are slowing the business down, then send your plan after the call.</p>
   </section>`;
 }
 
