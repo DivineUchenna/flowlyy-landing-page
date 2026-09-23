@@ -301,7 +301,7 @@ function renderBooking() {
 }
 
 function renderBooked() {
-    if (typeof window.fbq === "function") window.fbq("track", "Lead");
+    
   setMode("result");
   setProgress(100);
   
