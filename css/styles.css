@@ -489,9 +489,9 @@ main {
 
 .hero h1 {
   max-width: 72rem;
-  font-family: var(--font-body);
-  font-weight: 600;
-  letter-spacing: -0.045em;
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.02em;
   line-height: 1.02;
 }
 
@@ -1544,119 +1544,6 @@ td.act a:hover {
   border-top: 1px solid var(--border-hairline);
 }
 
-/* ---------- Revenue calculator ---------- */
-
-.calc {
-  display: grid;
-  gap: var(--space-lg);
-  grid-template-columns: 1fr;
-}
-
-@media (min-width: 768px) {
-  .calc {
-    grid-template-columns: 1fr 1.15fr;
-    gap: var(--gutter);
-    align-items: stretch;
-  }
-}
-
-.calc__inputs {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  padding: 1.25rem;
-  background: var(--surface-low);
-}
-
-.calc__intro {
-  font-size: 0.875rem;
-  line-height: 1.6;
-  color: var(--ink-secondary);
-}
-
-.calc__field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.375rem;
-}
-
-.calc__input {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding-inline: 0.75rem;
-}
-
-.calc__input input {
-  width: 100%;
-  min-width: 0;
-  padding: 0.625rem 0;
-  border: 0;
-  background: transparent;
-  font-family: var(--font-mono);
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--ink);
-  caret-color: var(--ink);
-  -moz-appearance: textfield;
-}
-
-.calc__input input::-webkit-outer-spin-button,
-.calc__input input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.calc__input input:focus {
-  outline: none;
-}
-
-.calc__affix {
-  font-family: var(--font-mono);
-  font-size: 1rem;
-  color: var(--ink-caption);
-}
-
-.calc__result {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  padding: 1.25rem;
-  border: 1px solid var(--border-soft);
-  background: var(--canvas-pure);
-}
-
-.calc__big {
-  font-size: clamp(2.5rem, 6vw, 3.75rem);
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: var(--accent);
-}
-
-.calc__rows {
-  display: grid;
-  gap: 0.25rem;
-  padding-block: 0.75rem;
-  border-block: 1px solid var(--border-hairline);
-  color: var(--ink-tertiary);
-}
-
-.calc__rows div {
-  display: flex;
-  justify-content: space-between;
-  gap: var(--space-sm);
-}
-
-.calc__rows dd {
-  color: var(--ink);
-}
-
-.calc__note {
-  font-size: 0.8125rem;
-  line-height: 1.6;
-  color: var(--ink-secondary);
-}
-
 /* ---------- Pricing tiers ---------- */
 
 .tiers {
@@ -1761,20 +1648,6 @@ td.act a:hover {
 .tier__cta {
   margin-top: auto;
   width: 100%;
-}
-
-/* ROI calculator helper text */
-
-.calc__hint {
-  font-size: 0.75rem;
-  line-height: 1.4;
-  color: var(--ink-tertiary);
-}
-
-.calc__fine {
-  font-size: 0.6875rem;
-  line-height: 1.4;
-  color: var(--ink-caption);
 }
 
 /* ---------- Demo window: tabs, report ---------- */

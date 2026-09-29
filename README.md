@@ -23,7 +23,9 @@ design/               Stitch design exports (not in the repo): DESIGN.md, code.h
 
 ## fit-check/ (generated, don't edit here)
 
-`fit-check/` is the qualification funnel that the two "Let's chat" links open (flowly.org.uk/fit-check/). It's copied from `Desktop/AI/Projects/flowlyy-consultation-funnel` by `npm run sync` in that project. Edit the funnel there, then sync; changes made directly in this folder get overwritten.
+`fit-check/` is a roofing-specific qualification funnel, copied from `Desktop/AI/Projects/flowlyy-consultation-funnel` by `npm run sync` in that project. Edit the funnel there, then sync; changes made directly in this folder get overwritten.
+
+The homepage no longer links to it (the page moved off roofing positioning to the AI operating system / education offer, so "Let's chat" now points straight at the Cal.com discovery call). The folder stays in the repo but is orphaned until something links to it again.
 
 `vercel.json` sets `trailingSlash: true`, so `/fit-check` redirects to `/fit-check/` and the funnel's relative paths (styles, script, logo) load correctly.
 
