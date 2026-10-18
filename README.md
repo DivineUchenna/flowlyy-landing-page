@@ -1,35 +1,41 @@
 # Flowlyy landing page
 
-Static HTML, CSS and a little JavaScript. No build step. Open `index.html` in a browser to preview.
+A single static page. All CSS and JavaScript live inside `index.html`, so there's no build step.
+
+## Preview locally
+
+```
+python3 -m http.server 8765
+```
+
+Then open http://127.0.0.1:8765. Opening `index.html` straight from Finder also works.
 
 ## Structure
 
 ```
-index.html            page markup
-css/
-  styles.css          all styles
-js/
-  script.js           product filters, ROI calculator, demo window tabs, email form handlers
+index.html          the whole page (markup, styles, scripts)
 assets/
-  logo/               Flowlyy logo
-  tools/              tool logos used in the hero marquee and footer socials
-  founder/            founder photo
-  patterns/           dithered divider tile
-docs/                 internal notes (not in the repo): agent context, offer, ideal customer profile
-design/               Stitch design exports (not in the repo): DESIGN.md, code.html, screen.png
+  logo/             Flowlyy logo
+  tools/            tool logos for the scrolling strip under the hero
+  footer/           moon-landscape footer image (webp + jpg fallback)
+  founder/          founder photo (not used on the current page)
+fit-check/          roofing qualification funnel (generated, see below)
+vercel.json         trailingSlash: true
 ```
 
 `docs/` and `design/` stay on your machine and are listed in `.gitignore`.
 
+## Page sections
+
+Hero (interactive agent demo), tool logo strip, what we build (client acquisition is the main service), "See what Flowlyy can do" interactive previews, how it works, pricing (no prices, scoped on a call), FAQ, closing call to action, footer.
+
+The Meta Pixel (ID 1587701063397395) is in the `<head>` and fires a PageView.
+
 ## fit-check/ (generated, don't edit here)
 
-`fit-check/` is a roofing-specific qualification funnel, copied from `Desktop/AI/Projects/flowlyy-consultation-funnel` by `npm run sync` in that project. Edit the funnel there, then sync; changes made directly in this folder get overwritten.
+Copied from `Desktop/AI/Projects/flowlyy-consultation-funnel` by `npm run sync` in that project. Not linked from the homepage.
 
-The homepage no longer links to it (the page moved off roofing positioning to the AI operating system / education offer, so "Let's chat" now points straight at the Cal.com discovery call). The folder stays in the repo but is orphaned until something links to it again.
+## Before launch
 
-`vercel.json` sets `trailingSlash: true`, so `/fit-check` redirects to `/fit-check/` and the funnel's relative paths (styles, script, logo) load correctly.
-
-## To do before launch
-
-- Point the email forms at a real endpoint (see the TODO comments in `index.html` and `js/script.js`).
-- Replace the `#` social links in the footer with real profile URLs.
+- Numbers and names in the mockups and previews are illustrative.
+- Tool logos (WhatsApp, Gmail, Calendar, Sheets, GoHighLevel and others) are hand-drawn stand-ins. Swap in official icon files.

@@ -1,18 +1,390 @@
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
-  <meta charset="utf-8">
-  <script>document.documentElement.classList.add("js");</script>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Flowlyy | Build your AI operating system</title>
-  <meta name="description" content="Flowlyy builds AI operating systems that draft your emails, pull your reports together, chase your admin and back your research, so founders, professionals and students stop doing the busywork by hand.">
-  <meta name="theme-color" content="#FFFFFF">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flowlyy | The AI centre for your business</title>
+<meta name="description" content="Flowlyy builds client acquisition, websites, automations, custom software and AI agents for service businesses. Book a free discovery call.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233062F5'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--ink:#0D1424;--muted:#6B7385;--line:#E6E8EC;--soft:#F5F6F8;--blue:#3062F5;--blue-deep:#2450D6;--blue-tint:#E6EEFF;--ok:#0F7B55;--ok-bg:#DFF3EA;
+  --sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;--mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;--pad:clamp(20px,5vw,48px)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;color-scheme:light}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+a{color:inherit}
+button{font-family:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 var(--pad)}
+section{padding:clamp(72px,11vw,140px) 0}
+h1,h2,h3{font-weight:600;letter-spacing:-.03em;line-height:1.1}
+h2{font-size:clamp(26px,3.4vw,40px);max-width:20em}
+.sub{color:var(--muted);max-width:52ch;margin-top:16px}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:8px 14px;z-index:50}
+.skip:focus{left:8px}
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500;600;700&family=Geist+Pixel&family=Syne:wght@700;800&family=VT323&family=Caveat:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
-  <!-- Meta Pixel Code -->
+/* retro bevel buttons (unchanged from live site) */
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 22px;border:1px solid #6e6e6e;border-radius:6px;background:linear-gradient(#fff,#f1f1f1);color:var(--ink);box-shadow:inset -1px -1px 0 #c4c4c4,inset 1px 1px 0 #fff,1px 1px 0 #b5b5b5;font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background .1s}
+.btn:hover{background:linear-gradient(#f7f7f7,#e6e6e6)}
+.btn:active{background:#e2e2e2;box-shadow:inset 1px 1px 0 #a8a8a8,inset -1px -1px 0 #f4f4f4;transform:translate(1px,1px)}
+.btn--blue{background:linear-gradient(#6a94ff,#3d6fff);border-color:#2450d6;color:#fff;box-shadow:inset -1px -1px 0 #2f5df0,inset 1px 1px 0 #a5bcff,1px 1px 0 #2148c4}
+.btn--blue:hover{background:linear-gradient(#5a87ff,#3062f5)}
+.btn--blue:active{background:#3062f5;box-shadow:inset 1px 1px 0 #2450d6,inset -1px -1px 0 #6f93ff}
+.btn--sm{padding:8px 14px;font-size:11px}
+.btn--soft{font-family:var(--sans);text-transform:none;letter-spacing:-.01em;font-size:14px;font-weight:500;color:#3A3D45;padding:9px 16px;border:1px solid #E1E1DC;border-radius:11px;background:#F8F8F5;box-shadow:inset 0 1px 0 #fff,0 1px 2px rgba(20,24,35,.06),0 10px 24px -12px rgba(20,24,35,.22)}
+.btn--soft:hover{background:#F2F2EE}
+.btn--soft:active{background:#EDEDE8;box-shadow:inset 0 1px 2px rgba(20,24,35,.08);transform:translateY(1px)}
+.btn--soft.btn--sm{font-size:12.5px;padding:6px 11px;border-radius:9px}
+.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(8px)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav img{height:24px;display:block}
+.nav__links{display:flex;gap:28px;font-size:13px}
+.nav__links a{text-decoration:none;color:var(--muted)}
+.nav__links a:hover{color:var(--ink)}
+@media(max-width:760px){.nav__links{display:none}}
+
+/* hero */
+.hero{padding-top:clamp(64px,10vw,128px);padding-bottom:clamp(48px,6vw,72px)}
+.hero h1{font-size:clamp(34px,6vw,72px);max-width:13em;letter-spacing:-.045em}
+.hero .sub{font-size:16px;margin-top:22px}
+
+/* demo window */
+.demo{padding-top:0}
+.win{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
+.win__bar{display:flex;align-items:center;gap:7px;padding:12px 16px;border-bottom:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+.win__bar i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.win__bar span{margin-left:8px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.win__hint{margin-left:auto;font-style:normal;white-space:nowrap;flex:none;color:var(--muted)}
+.win__body{display:grid;grid-template-columns:220px 1fr;min-height:400px}
+.win__side{border-right:1px solid var(--line);padding:16px 12px;background:var(--soft)}
+.win__side h4{font-size:12px;font-weight:500;color:var(--muted);margin:16px 10px 6px}
+.win__side h4:first-child{margin-top:0}
+.win__side ul{list-style:none;padding:0}
+.win__side li{padding:6px 10px;font-size:13px;color:var(--muted)}
+.win__side button,.agentbar button{display:block;width:100%;text-align:left;font-size:13.5px;border:0;background:none;padding:8px 10px;border-radius:6px;color:var(--muted);cursor:pointer}
+.win__side button:hover,.agentbar button:hover{color:var(--ink)}
+.win__side button[aria-pressed="true"],.agentbar button[aria-pressed="true"]{background:#fff;color:var(--ink);box-shadow:0 0 0 1px var(--line)}
+.agentbar{display:none;gap:6px;overflow-x:auto}
+.agentbar button{width:auto;white-space:nowrap;border:1px solid var(--line)}
+.win__main{padding:20px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.asks{display:flex;flex-wrap:wrap;gap:8px}
+.asks button{font-size:13px;padding:6px 13px;border-radius:99px;border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer}
+.asks button:hover{border-color:var(--blue)}
+.asks button[aria-pressed="true"]{border-color:var(--blue);color:var(--blue-deep);background:var(--blue-tint)}
+.chat{display:flex;flex-direction:column;gap:12px;min-height:230px}
+.bubble{align-self:flex-end;background:var(--blue);color:#fff;padding:9px 14px;border-radius:14px 14px 3px 14px;font-size:14px;max-width:85%}
+.steps{display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--muted)}
+.steps div{display:flex;align-items:center;gap:10px;animation:fadein .3s}
+.steps div::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--ok);flex:none}
+@keyframes fadein{from{opacity:0;transform:translateY(4px)}}
+.answer{border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:14px;line-height:1.55;animation:fadein .35s}
+.answer b{color:var(--blue-deep);font-weight:600}
+.answer q{display:block;margin-top:10px;padding:10px 12px;background:var(--soft);border-radius:7px;quotes:none}
+.answer small{display:block;margin-top:10px;font-size:12px;color:var(--muted)}
+.act{margin-top:12px}
+.act:disabled{background:var(--ok-bg);border-color:#7fbf9f;color:var(--ok);box-shadow:none;transform:none;cursor:default}
+@media(max-width:760px){.win__body{grid-template-columns:1fr}.win__side{display:none}.agentbar{display:flex}.win__hint{display:none}}
+.hero .wrap>*,.demo .wrap>*{min-width:0}
+
+/* systems: plain cards like base.org products */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px}
+.card{background:var(--soft);border-radius:14px;padding:26px 22px;display:flex;flex-direction:column;gap:10px;min-height:250px}
+.card h3{font-size:18px;letter-spacing:-.02em}
+.card p{color:var(--muted);font-size:13.5px}
+.card ul{list-style:none;padding:0;margin-top:auto;font-size:12.5px;color:var(--ink);display:grid;gap:4px}
+.card li::before{content:"– ";color:var(--muted)}
+@media(max-width:980px){.cards{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.cards{grid-template-columns:1fr}}
+
+
+/* systems: base.org style feature grid */
+.sys-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;text-align:left}
+#systems h2{margin:0;text-align:left;max-width:18em;color:var(--muted);font-weight:500}
+#systems h2 strong{color:var(--ink);font-weight:600}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border:1px solid var(--line);border-radius:99px;text-decoration:none;font-size:14px;font-weight:500;white-space:nowrap}
+.pill:hover{border-color:var(--ink)}
+.feat{display:grid;grid-template-columns:repeat(2,1fr);gap:56px 32px;margin-top:48px;text-align:left}
+.feat__art{border:1px solid var(--line);border-radius:16px;aspect-ratio:1.78;display:grid;place-items:center;overflow:hidden}
+.feat__art svg{width:92%;height:auto}
+.feat h3{font-size:19px;margin-top:22px;letter-spacing:-.02em}
+.feat p{color:var(--muted);margin-top:6px;max-width:52ch;font-size:15px}
+.feat ul{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.feat li{font-size:12px;padding:4px 10px;border-radius:99px;background:var(--soft)}
+.feat>article{min-width:0}
+.feat>article:first-child{grid-column:1/-1;display:grid;grid-template-columns:1.35fr 1fr;gap:40px;align-items:center;background:var(--soft);border-radius:20px;padding:clamp(16px,2.5vw,28px)}
+.feat>article:first-child .feat__art{background:#fff;aspect-ratio:1.6;grid-row:span 3}
+.feat>article:first-child h3{font-size:clamp(24px,2.6vw,32px);margin-top:0;align-self:end}
+.feat>article:first-child>p{font-size:16px}
+.feat>article:first-child ul{align-self:start}
+.feat>article:first-child li{background:#fff}
+.feat>article:first-child h3::before{content:"Main service";display:block;width:max-content;font-size:12px;font-weight:600;letter-spacing:0;color:var(--blue-deep);background:var(--blue-tint);padding:4px 10px;border-radius:99px;margin-bottom:14px}
+@media(max-width:900px){.feat>article:first-child{grid-template-columns:1fr;gap:16px}.feat>article:first-child .feat__art{grid-row:auto}}
+@media(max-width:760px){.feat{grid-template-columns:1fr;gap:44px}}
+
+/* what flowlyy can do: notion-style cards + interactive previews */
+.can-label{color:var(--muted);font-size:15px;text-align:left}
+.can{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:16px}
+.can button{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:16px;padding:20px 22px;min-height:96px;border:1px solid var(--line);border-radius:16px;background:#fff;cursor:pointer;text-align:left;font:inherit;color:var(--ink);transition:border-color .15s}
+.can button:hover{border-color:#B9C2D0}
+.can button[aria-pressed="true"]{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue)}
+.can .ico{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;border:2px solid var(--ink)}
+.can .ico svg{width:24px;height:24px}
+.can .ci{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--blue-tint);color:var(--blue-deep);flex:none}
+.can .ci svg{width:18px;height:18px}
+.can button[aria-pressed="true"] .ci{background:var(--blue);color:#fff}
+.can b{font-size:14.5px;line-height:1.35;font-weight:600}
+@media(max-width:1100px){.can{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:700px){.can{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.can{grid-template-columns:1fr}.can button{flex-direction:row;align-items:center;gap:16px}}
+.pv{margin-top:20px;border:1px solid var(--line);border-radius:16px;padding:clamp(20px,3vw,32px);text-align:left;display:grid;grid-template-columns:1fr 1.3fr;gap:32px;align-items:center}
+@media(max-width:1000px){.pv{grid-template-columns:1fr}}
+.tool{min-width:0}
+@media(max-width:380px){.tool{font-size:10.5px}}
+.pv>*{min-width:0}
+.pv h3{font-size:22px}
+@media(max-width:560px){.stagebox{padding:12px}.hub{gap:12px 16px}.hub .tag2{font-size:0;width:8px;height:8px;padding:0;border-radius:50%;border:0}.hub .tag2--bad{background:#E8A396}.hub .tag2--ok{background:var(--ok)}.hub .core{font-size:12px;padding:8px 2px}.tool{flex-direction:column;gap:4px;padding:8px 4px;font-size:11.5px;text-align:center}.tag2{font-size:10px}}
+.pv>div>p{color:var(--muted);margin:10px 0 22px;font-size:15px}
+.stagebox{background:var(--soft);border-radius:12px;padding:20px;min-height:280px;position:relative;font-size:13px}
+.tag2{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;background:#fff;border:1px solid var(--line);color:var(--muted)}
+.tag2--ok{background:var(--ok-bg);border-color:transparent;color:var(--ok)}
+.tag2--bad{background:#FDE8E4;border-color:transparent;color:#B4432C}
+/* systems */
+.hub{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 36px;position:relative}
+.tool{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;transition:all .5s}
+.hub .core{grid-column:2;grid-row:2;background:var(--blue);color:#fff;border-color:var(--blue);justify-content:center;opacity:.25;transition:opacity .5s}
+.done .core{opacity:1}
+.hub svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hub path{stroke:var(--blue);stroke-width:1.5;fill:none;stroke-linecap:round;transition:stroke-dashoffset 1.1s cubic-bezier(.65,0,.35,1)}
+.hub .tool{position:relative;z-index:1}
+.hub circle{fill:var(--blue);transform-box:fill-box;transform-origin:center;transition:opacity .3s,transform .4s cubic-bezier(.3,1.6,.5,1)}
+.core.pulse{animation:pulse 1.4s ease-out}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(48,98,245,.45)}100%{box-shadow:0 0 0 18px rgba(48,98,245,0)}}
+/* crm table */
+.tbl{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden}
+.tbl td,.tbl th{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left}
+.tbl th{font-weight:500;color:var(--muted);font-size:12px}
+.tbl tr{transition:opacity .4s,background .4s}
+.tbl tr.dup{background:#FDE8E4}
+.done .tbl tr.dup{opacity:0;display:none}
+/* follow-up timeline */
+.tl{list-style:none;padding:0;display:grid;gap:10px}
+.tl li{display:flex;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;opacity:.35;transition:opacity .4s,border-color .4s}
+.tl li.on{opacity:1;border-color:#B9C2D0}
+.tl li em{font-style:normal;color:var(--muted);width:52px;flex:none}
+.tl li.reply{border-color:var(--ok)}
+/* website builder */
+.site{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.site .bar{height:22px;border-bottom:1px solid var(--line);display:flex;gap:5px;align-items:center;padding:0 8px}
+.site .bar i{width:7px;height:7px;border-radius:50%;background:var(--line)}
+.blk{margin:10px;border-radius:6px;background:repeating-linear-gradient(45deg,#EEF0F3 0 6px,#F6F7F9 6px 12px);height:40px;transition:all .5s;display:flex;align-items:center;padding:0 12px;color:transparent}
+.done .blk{background:var(--blue-tint);color:var(--ink)}
+.done .blk.h{height:64px;background:var(--blue);color:#fff;font-size:15px;font-weight:600}
+.toast{position:absolute;right:16px;bottom:16px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;box-shadow:0 10px 24px -12px rgba(13,20,36,.3);opacity:0;transform:translateY(8px);transition:all .4s}
+.toast.show{opacity:1;transform:none}
+.pv .btn:disabled{opacity:.6;cursor:default}
+
+/* mac-style mockups */
+.feat__art{background:#F5F5F2;border-color:#ECECE8;container-type:inline-size;position:relative;display:block}
+.mock{position:absolute;inset:0;font-size:1.55cqw;color:#2B2F38}
+.mw,.fp{position:absolute;border-radius:1.4em;padding:.45em;background:rgba(255,255,255,.55);box-shadow:0 0 0 1px rgba(0,0,0,.06),0 1.6em 3em -1.6em rgba(30,35,50,.25)}
+.mw{left:6%;top:12%;width:62%;bottom:-8%}
+.fp{right:5%;top:26%;width:42%}
+.in{background:#FAFAF8;border-radius:1em;box-shadow:0 0 0 1px rgba(0,0,0,.07);height:100%;overflow:hidden}
+.fp .in{height:auto}
+.tb{display:flex;align-items:center;gap:.4em;padding:.9em 1.1em;border-bottom:1px solid #EDEDEA;font-weight:600;font-size:1.05em}
+.tb i{width:.75em;height:.75em;border-radius:50%;background:#FF5F57}.tb i+i{background:#FEBC2E}.tb i+i+i{background:#28C840;margin-right:.6em}
+.tb .x{margin-left:auto;color:#9A9EA8;font-weight:400}
+.bd{padding:1em 1.2em}
+.row2{display:flex;justify-content:space-between;align-items:center;padding:.75em 0;border-bottom:1px solid #EDEDEA}
+.row2:last-child{border-bottom:0}
+.row2 span{color:#80848E}
+.big{font-family:var(--mono);font-size:2.6em;letter-spacing:-.04em;line-height:1.1;margin:.15em 0 .3em}
+.chip{display:inline-flex;align-items:center;gap:.3em;font-size:.88em;padding:.25em .6em;border-radius:.5em;font-weight:500}
+.chip--g{background:#E3F4DA;color:#3D8A2E}.chip--b{background:#E3EBFF;color:#2450D6}.chip--r{background:#FBE3DE;color:#B4432C}.chip--y{background:#FDF1CF;color:#8A6510}
+.seg{display:flex;gap:.18em;margin:.4em 0 .6em}.seg b{flex:1;height:.7em;border-radius:.12em;background:#7ACB6A}.seg b.o{background:#F2B544}.seg b.e{background:#E9EAE6}
+.av{width:2.2em;height:2.2em;border-radius:50%;display:grid;place-items:center;font-size:.8em;background:#fff;box-shadow:0 0 0 1px #E3E4E0;margin-right:.7em;flex:none}
+.who2{display:flex;align-items:center}
+.who2 small{display:block;color:#80848E;font-size:.85em}
+.fld{border:1px solid #E3E4E0;border-radius:.6em;padding:.55em .8em;margin-top:.35em;background:#fff}
+.lbl{font-size:.8em;color:#80848E;margin-top:.7em}
+.bar2{height:.6em;border-radius:1em;background:#ECECE8;margin:.5em 0}.bar2 b{display:block;height:100%;width:65%;border-radius:1em;background:linear-gradient(90deg,#6A94FF,#3062F5)}
+.ph{display:grid;grid-template-columns:repeat(4,1fr);gap:.4em;margin-top:.5em}.ph b{aspect-ratio:1.2;border-radius:.4em;background:#E3EBFF}.ph b:nth-child(2){background:#E3F4DA}.ph b:nth-child(3){background:#FBE3EE}.ph b:nth-child(4){background:#FDF1CF}
+.msgx{max-width:80%;padding:.6em .85em;border-radius:1em;margin:.5em 0;font-size:.95em;line-height:1.35}
+.msgx.u{background:#fff;box-shadow:0 0 0 1px #E3E4E0;border-bottom-left-radius:.3em}
+.msgx.a{background:#3062F5;color:#fff;margin-left:auto;border-bottom-right-radius:.3em}
+.ft{text-align:center;padding:.8em;border-top:1px solid #EDEDEA;color:#80848E;font-size:.9em}
+.ft b{color:#2B2F38}
+.mw .row2{justify-content:flex-start;gap:1em}.mw .row2 span{min-width:9em}
+.feat .mock p{font-size:1em;color:#2B2F38;max-width:none;margin-top:.8em}
+.mw .row2 .av,.mw .row2 .chip,.mw .row2 .who2 span{min-width:0}
+.mw .row2:has(.who2) .who2{min-width:10em}
+.btnx{display:block;text-align:center;margin-top:.8em;padding:.6em;border-radius:.7em;background:#fff;box-shadow:0 0 0 1px #E3E4E0,0 .15em 0 #E3E4E0;font-weight:500}
+/* orbiting integrations */
+.orb{position:relative;height:300px;overflow:visible}
+.orb__lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
+.orb__lines line{stroke:var(--blue);stroke-width:1.5;stroke-dasharray:4 5;animation:flow 1s linear infinite;transition:opacity .4s}
+@keyframes flow{to{stroke-dashoffset:-18}}
+.orb__core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;background:var(--blue);color:#fff;font-weight:600;font-size:15px;padding:12px 22px;border-radius:14px;box-shadow:0 10px 24px -10px rgba(48,98,245,.6)}
+.ob{position:absolute;left:0;top:0;width:48px;display:flex;flex-direction:column;align-items:center;gap:4px;will-change:transform}
+.ob__i{width:48px;height:48px;border-radius:14px;background:var(--c);display:grid;place-items:center;border:3px solid #fff;box-shadow:0 6px 14px -6px rgba(13,20,36,.35);filter:grayscale(1) opacity(.55);transition:filter .45s,transform .45s cubic-bezier(.3,1.6,.5,1)}
+.ob__i svg{width:24px;height:24px}
+.ob__i--brand svg{width:30px;height:30px}
+.ob em{font-style:normal;font-size:11px;color:var(--muted);white-space:nowrap;background:rgba(255,255,255,.8);padding:1px 6px;border-radius:6px}
+.ob.on .ob__i{filter:none;transform:scale(1.12)}
+.ob.on em{color:var(--ink)}
+@media(max-width:560px){.orb{height:260px}.ob{width:40px}.ob__i{width:40px;height:40px;border-radius:12px}.ob__i svg{width:20px;height:20px}}
+/* ads manager preview */
+.adm{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;position:relative;font-size:12.5px}
+.adm__bar{display:flex;justify-content:space-between;padding:10px 12px;border-bottom:1px solid var(--line);background:#FAFBFC}
+.adm__bar span{color:var(--muted)}
+.ads{width:100%;border-collapse:collapse}
+.ads th{font-weight:600;font-size:11.5px;text-align:left;padding:8px 8px;border-bottom:1px solid var(--line);color:#3A3D45;white-space:nowrap}
+.ads td{padding:10px 8px;border-bottom:1px solid var(--line);white-space:nowrap;font-variant-numeric:tabular-nums}
+.ads .nm{color:var(--blue-deep);white-space:normal;min-width:120px}
+.tg{display:inline-block;width:30px;height:17px;border-radius:9px;background:#D5D9E0;position:relative;transition:background .3s}
+.tg::after{content:"";position:absolute;left:2px;top:2px;width:13px;height:13px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .3s cubic-bezier(.3,1.5,.5,1)}
+.live .tg{background:var(--blue)}.live .tg::after{transform:translateX(13px)}
+.dl i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#C3C8D0;margin-right:6px;transition:background .3s}
+.live .dl i{background:#22C55E;box-shadow:0 0 0 3px rgba(34,197,94,.2)}
+.adm__kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px}
+.adm__kpi div{background:var(--soft);border-radius:8px;padding:8px 10px}
+.adm__kpi small{display:block;color:var(--muted);font-size:11px}
+.adm__kpi b{font-size:18px;font-variant-numeric:tabular-nums}
+.toasts{position:absolute;right:10px;bottom:10px;display:flex;flex-direction:column;gap:6px;pointer-events:none}
+.lt{background:#fff;border:1px solid var(--line);border-radius:9px;padding:7px 10px;box-shadow:0 8px 18px -10px rgba(13,20,36,.35);animation:fadein .35s;font-size:12px}
+.lt.out{opacity:0;transform:translateY(-6px);transition:opacity .35s,transform .35s}
+.lt i{display:inline-block;width:7px;height:7px;border-radius:50%;background:#22C55E;margin-right:6px}
+.adm{overflow-x:auto}
+/* pricing (no prices) */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px;text-align:left}
+.tier{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:16px;padding:28px 24px;background:#fff}
+.tier--mid{background:var(--soft);border-color:#D5DDF0}
+.tier h3{font-size:19px}
+.tier>p{color:var(--muted);font-size:14.5px;margin-top:6px;min-height:3.2em}
+.tier__price{margin:22px 0 18px;padding-bottom:18px;border-bottom:1px solid var(--line);font-size:24px;font-weight:600;letter-spacing:-.02em}
+.tier ul{list-style:none;padding:0;display:grid;gap:10px;font-size:14.5px;margin-bottom:28px}
+.tier li{position:relative;padding-left:24px}
+.tier li::before{content:"";position:absolute;left:0;top:.35em;width:14px;height:14px;border-radius:50%;background:var(--blue-tint) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M4 7.2l2 2 4-4.4' fill='none' stroke='%232450D6' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat}
+.tier .btn{margin-top:auto;align-self:stretch;justify-content:center}
+.tiers__note{margin-top:28px;color:var(--muted);font-size:14.5px;text-align:center}
+@media(max-width:900px){.tiers{grid-template-columns:1fr;max-width:520px;margin-left:auto;margin-right:auto}.tier>p{min-height:0}}
+/* features grid */
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:40px 32px;margin-top:56px}
+.grid4 b{font-size:12.5px;color:var(--blue-deep);font-weight:500}
+.grid4 h3{font-size:16px;margin:8px 0}
+.grid4 p{color:var(--muted);font-size:13.5px}
+@media(max-width:900px){.grid4{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.grid4{grid-template-columns:1fr}}
+
+/* faq */
+.faq{max-width:760px;margin-top:40px}
+details{border-top:1px solid var(--line);padding:18px 0}
+details:last-child{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;font-size:15px;font-weight:500;list-style:none;display:flex;justify-content:space-between;gap:20px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--muted)}
+details[open] summary::after{content:"\2013"}
+details p{color:var(--muted);margin-top:10px;font-size:14px;max-width:60ch}
+
+/* closing cta */
+.end{text-align:left;border-top:1px solid var(--line)}
+.end h2{font-size:clamp(30px,4.6vw,56px);letter-spacing:-.04em}
+
+/* footer: etched moon */
+.foot{--sky:#08387F;--cream:#F7EBD5;background:var(--sky);color:var(--cream)}
+.foot__art{background-color:var(--sky);background-image:url("assets/footer/footer-moon.jpg");background-image:image-set(url("assets/footer/footer-moon.webp") type("image/webp"),url("assets/footer/footer-moon.jpg") type("image/jpeg"));background-size:cover;background-position:50% 100%;background-repeat:no-repeat;padding:48px 0 clamp(260px,30vw,460px)}
+.foot__top{display:flex;flex-wrap:wrap;gap:32px 64px;justify-content:space-between;flex-direction:column;align-items:center;text-align:center}
+.foot__logo img{height:24px;display:block;filter:brightness(0) invert(1)}
+.foot__nav{display:flex;flex-wrap:wrap;gap:24px 56px;font-size:13px;justify-content:center}
+.foot__nav h4{font-size:13px;font-weight:500;color:#fff;margin-bottom:10px}
+.foot__nav a{display:block;color:var(--cream);text-decoration:none;padding:3px 0;opacity:.85}
+.foot__nav a:hover{opacity:1;text-decoration:underline}
+.foot :focus-visible{outline-color:#fff}
+.socials2{display:flex;gap:14px;justify-content:center}
+.soc{width:48px;height:48px;display:grid;place-items:center;border-radius:13px;background:#F8F8F5;border:1px solid #E1E1DC;color:#3A3D45;box-shadow:inset 0 1px 0 #fff,inset 0 -2px 0 #E4E4DF,0 2px 3px rgba(0,0,0,.18),0 8px 16px -4px rgba(0,0,0,.35),0 18px 36px -10px rgba(0,10,40,.55);transition:background .15s,transform .1s,box-shadow .15s}
+.soc:hover{background:#fff}.soc:active{transform:translateY(1px);box-shadow:inset 0 1px 2px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.2)}
+.soc svg{width:20px;height:20px}
+.foot__base{background:#05224F;color:#9DB0D6;font-size:12px;padding:14px 0}
+.foot__base .wrap{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 24px}
+@media(max-width:600px){.foot__art{padding-bottom:340px}}
+/* comet-style hero */
+.hero{position:relative;overflow:hidden;text-align:center;padding-top:clamp(56px,8vw,104px);padding-bottom:0}
+.hero h1{margin:0 auto;max-width:12em;font-size:clamp(36px,6.4vw,80px);font-weight:600}
+.hero .sub{margin:22px auto 0}
+.hero .btns{justify-content:center}
+.ring{display:inline-flex}
+.orbits{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.hero .wrap{position:relative;z-index:1}
+.stage{position:relative;max-width:960px;margin:clamp(48px,7vw,88px) auto 0;text-align:left}
+.chips{position:absolute;left:-56px;bottom:56px;display:flex;flex-direction:column;gap:12px;z-index:2}
+.chips button{display:flex;align-items:center;gap:10px;font-size:13.5px;padding:12px 18px;border:0;border-radius:14px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);box-shadow:0 10px 30px -10px rgba(13,20,36,.25);cursor:pointer;color:var(--ink)}
+.chips button:hover,.chips button[aria-pressed="true"]{box-shadow:0 0 0 1.5px var(--blue),0 10px 30px -10px rgba(13,20,36,.25)}
+.chips svg{width:16px;height:16px;flex:none}
+.assist{position:absolute;right:-48px;top:-34px;width:min(340px,42%);z-index:2;padding:18px 20px;border-radius:18px;background:rgba(255,255,255,.88);backdrop-filter:blur(14px);box-shadow:0 20px 50px -18px rgba(13,20,36,.3);text-align:left}
+.assist small{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted)}
+.assist small::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--blue)}
+.assist p{margin-top:10px;font-size:17px;line-height:1.35;font-weight:500;letter-spacing:-.02em}
+.win{box-shadow:0 30px 70px -40px rgba(13,20,36,.35)}
+@media(max-width:1100px){.chips{left:12px;bottom:auto;top:-22px;flex-direction:row}.assist{display:none}}
+@media(max-width:760px){.chips{position:static;flex-wrap:wrap;justify-content:center;margin-bottom:14px}.planet--a{display:none}}
+/* hatched planets */
+.planet{position:absolute;z-index:0;pointer-events:none;height:auto}
+.planet--a{width:clamp(150px,17vw,260px);aspect-ratio:1;left:clamp(-90px,-4vw,-40px);top:4%}
+.planet--b{width:clamp(240px,34vw,540px);aspect-ratio:1;right:clamp(-260px,-14vw,-110px);bottom:-10%}
+.planet--c{width:clamp(118px,12vw,185px);aspect-ratio:320/256;right:9%;top:3%;transform:rotate(10deg)}
+.planet--d{width:clamp(50px,5vw,80px);aspect-ratio:1;left:9%;top:52%;transform:rotate(-30deg)}
+.planet--e{width:clamp(30px,2.6vw,42px);aspect-ratio:1;right:22%;top:46%}
+@media(max-width:900px){.planet--d,.planet--e{display:none}.planet--c{width:76px;right:-18px;top:-6px}}
+/* stars */
+.stars{position:absolute;inset:0;z-index:0;pointer-events:none}
+.star{position:absolute;display:block;aspect-ratio:1}
+.star svg{width:100%;height:100%;display:block}
+.star.tw{animation:twinkle 3.2s ease-in-out infinite}
+@keyframes twinkle{50%{opacity:.25;transform:scale(.7) rotate(20deg)}}
+@media(max-width:760px){.star.sm{display:none}}
+/* logo marquee */
+.logos{padding:clamp(48px,6vw,72px) 0 0;text-align:center}
+.marq{overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent);mask:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent);max-width:980px;margin:0 auto}
+.marq ul{list-style:none;padding:0;display:flex;gap:56px;width:max-content;animation:marq 32s linear infinite}
+.marq:hover ul{animation-play-state:paused}
+.marq li{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:600;letter-spacing:-.02em;color:#6B6F78;white-space:nowrap}
+.marq img{width:26px;height:26px;opacity:.62;filter:grayscale(1) brightness(.55)}
+@keyframes marq{to{transform:translateX(calc(-50% - 28px))}}
+.logos p{margin-top:18px;color:var(--muted);font-size:15px}
+/* hero button pulse */
+.ring .btn{position:relative}
+.ring .btn::before,.ring .btn::after{content:"";position:absolute;inset:-1px;border-radius:6px;pointer-events:none;animation:ctaPulse 2.6s cubic-bezier(.2,.6,.3,1) infinite}
+.ring .btn::after{animation-delay:1.3s}
+@keyframes ctaPulse{0%{box-shadow:0 0 0 0 rgba(48,98,245,.42)}100%{box-shadow:0 0 0 26px rgba(48,98,245,0)}}
+.ring .btn:hover::before,.ring .btn:hover::after{animation-play-state:paused;opacity:0}
+/* centre everything */
+section h2,.sub{margin-left:auto;margin-right:auto}
+section h2,section>.wrap>.sub,.end,.grid4>div,.card{text-align:center}
+.card ul{justify-items:center}
+.faq{margin-left:auto;margin-right:auto}
+.end .btns{justify-content:center}
+/* tactile press: every button moves like a real one */
+.btn,.soc,.chips button,.can button,.asks button{transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .25s ease,background .15s;will-change:transform}
+.btn:hover,.soc:hover,.chips button:hover,.can button:hover,.asks button:hover{transform:translateY(-2px)}
+.btn--blue:hover{box-shadow:inset -1px -1px 0 #2f5df0,inset 1px 1px 0 #a5bcff,1px 1px 0 #2148c4,0 8px 18px -6px rgba(48,98,245,.55)}
+.btn--soft:hover{box-shadow:inset 0 1px 0 #fff,0 2px 4px rgba(20,24,35,.08),0 16px 30px -12px rgba(20,24,35,.3)}
+.soc:hover{box-shadow:inset 0 1px 0 #fff,inset 0 -2px 0 #E4E4DF,0 3px 5px rgba(0,0,0,.2),0 12px 22px -4px rgba(0,0,0,.4),0 26px 44px -10px rgba(0,10,40,.6)}
+.can button:hover{box-shadow:0 12px 26px -14px rgba(20,24,35,.3)}
+.btn:active,.soc:active,.chips button:active,.can button:active,.asks button:active{transform:translateY(2px) scale(.97);transition-duration:.08s}
+.btn--blue:active{box-shadow:inset 1px 1px 0 #2450d6,inset -1px -1px 0 #6f93ff,0 1px 2px rgba(48,98,245,.3)}
+.btn--soft:active{box-shadow:inset 0 2px 3px rgba(20,24,35,.1),0 1px 1px rgba(20,24,35,.06)}
+.btn:disabled,.btn:disabled:hover,.btn:disabled:active{transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+<!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -34,579 +406,258 @@ src="https://www.facebook.com/tr?id=1587701063397395&ev=PageView&noscript=1"
 </noscript>
 <!-- End Meta Pixel Code -->
 </head>
-<body id="top">
-  <a class="skip-link label" href="#main">Skip to content</a>
+<body>
+<a class="skip" href="#main">Skip to content</a>
 
-  <header class="site-header">
-    <div class="wrap site-header__inner">
-      <a class="brand" href="#top" aria-label="Flowlyy home">
-        <img class="brand__logo" src="assets/logo/flowlyy-logo.svg" alt="Flowlyy" width="126" height="32">      </a>
-      <nav class="site-nav label" aria-label="Primary">
-        <a class="nav-link" href="#services">Services</a>
-        <a class="nav-link" href="#product">Product</a>
-        <a class="nav-link" href="#pricing">Ways to work</a>
-        <a class="btn btn--sm btn--blue" href="https://cal.com/divine-uchenna-amakiri/discovery-call">Work with us</a>
+<header class="nav">
+  <div class="wrap">
+    <a href="#"><img src="assets/logo/flowlyy-logo.svg" alt="Flowlyy"></a>
+    <nav class="nav__links" aria-label="Primary"><a href="#systems">What we build</a><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></nav>
+    <a class="btn btn--blue btn--sm" href="https://cal.com/divine-uchenna-amakiri/discovery-call">Book a call</a>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero">
+  <svg class="planet planet--a" viewBox="0 0 200 200" aria-hidden="true"><defs><pattern id="pal" width="2.4" height="2.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><line x1="0" y1="0" x2="0" y2="2.4" stroke="#A9C4FF" stroke-width="1.05"/></pattern><pattern id="pad" width="2.4" height="2.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><line x1="0" y1="0" x2="0" y2="2.4" stroke="#3062F5" stroke-width="1.05"/></pattern><pattern id="pas" width="2.4" height="2.4" patternUnits="userSpaceOnUse" patternTransform="rotate(55)"><line x1="0" y1="0" x2="0" y2="2.4" stroke="#2450D6" stroke-width="1.05"/></pattern><pattern id="pap" width="2.4" height="2.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><line x1="0" y1="0" x2="0" y2="2.4" stroke="#D6E3FF" stroke-width="1.05"/></pattern><pattern id="pam" width="2.4" height="2.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><line x1="0" y1="0" x2="0" y2="2.4" stroke="#6A94FF" stroke-width="1.05"/></pattern><clipPath id="pac"><circle cx="100" cy="100" r="96"/></clipPath></defs><g clip-path="url(#pac)"><rect width="200" height="200" fill="#fff"/><circle cx="100" cy="100" r="96" fill="url(#pad)"/><circle cx="118" cy="82" r="96" fill="url(#pal)"/><path d="M48 70 A22 16 0 1 0 92 70 A22 16 0 1 0 48 70 Z" fill="url(#pap)" stroke="#2450D6" stroke-width="1.3" stroke-dasharray=".8 2.6" stroke-linecap="round"/><path d="M106 120 A14 10 0 1 0 134 120 A14 10 0 1 0 106 120 Z" fill="url(#pap)" stroke="#2450D6" stroke-width="1.3" stroke-dasharray=".8 2.6" stroke-linecap="round"/><path d="M51 140 A9 7 0 1 0 69 140 A9 7 0 1 0 51 140 Z" fill="url(#pap)" stroke="#2450D6" stroke-width="1.3" stroke-dasharray=".8 2.6" stroke-linecap="round"/><path d="M133 60 A7 6 0 1 0 147 60 A7 6 0 1 0 133 60 Z" fill="url(#pap)" stroke="#2450D6" stroke-width="1.3" stroke-dasharray=".8 2.6" stroke-linecap="round"/></g><circle cx="100" cy="100" r="96" fill="none" stroke="#2450D6" stroke-width="1" stroke-dasharray="1 4" opacity=".55"/></svg>
+  <svg class="planet planet--b" viewBox="0 0 200 200" aria-hidden="true"><defs><pattern id="pbl" width="2.4" height="2.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><line x1="0" y1="0" x2="0" y2="2.4" stroke="#A9C4FF" stroke-width="1.05"/></pattern><pattern id="pbd" width="2.4" height="2.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><line x1="0" y1="0" x2="0" y2="2.4" stroke="#3062F5" stroke-width="1.05"/></pattern><pattern id="pbp" width="2.4" height="2.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><line x1="0" y1="0" x2="0" y2="2.4" stroke="#D6E3FF" stroke-width="1.05"/></pattern><pattern id="pbm" width="2.4" height="2.4" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><line x1="0" y1="0" x2="0" y2="2.4" stroke="#6A94FF" stroke-width="1.05"/></pattern><clipPath id="pbc"><circle cx="100" cy="100" r="96"/></clipPath></defs><g clip-path="url(#pbc)"><rect width="200" height="200" fill="#fff"/><circle cx="100" cy="100" r="96" fill="url(#pbd)"/><circle cx="120" cy="80" r="94" fill="url(#pbl)"/><ellipse cx="62" cy="58" rx="24" ry="17" fill="url(#pbp)" stroke="#2450D6" stroke-width="1.3" stroke-dasharray=".8 2.6" stroke-linecap="round"/><ellipse cx="128" cy="88" rx="34" ry="24" fill="url(#pbm)" stroke="#2450D6" stroke-width="1.3" stroke-dasharray=".8 2.6" stroke-linecap="round"/><ellipse cx="78" cy="128" rx="16" ry="11" fill="url(#pbp)" stroke="#2450D6" stroke-width="1.3" stroke-dasharray=".8 2.6" stroke-linecap="round"/><ellipse cx="150" cy="148" rx="12" ry="9" fill="url(#pbp)" stroke="#2450D6" stroke-width="1.3" stroke-dasharray=".8 2.6" stroke-linecap="round"/><ellipse cx="108" cy="40" rx="8" ry="6" fill="url(#pbp)" stroke="#2450D6" stroke-width="1.3" stroke-dasharray=".8 2.6" stroke-linecap="round"/><ellipse cx="44" cy="104" rx="7" ry="5" fill="url(#pbp)" stroke="#2450D6" stroke-width="1.3" stroke-dasharray=".8 2.6" stroke-linecap="round"/><ellipse cx="118" cy="170" rx="9" ry="6" fill="url(#pbp)" stroke="#2450D6" stroke-width="1.3" stroke-dasharray=".8 2.6" stroke-linecap="round"/></g><circle cx="100" cy="100" r="96" fill="none" stroke="#2450D6" stroke-width="1" stroke-dasharray="1 4" opacity=".55"/></svg>
+  <svg class="planet planet--c" viewBox="-60 -28 320 256" aria-hidden="true"><defs><pattern id="pcl" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><line x1="0" y1="0" x2="0" y2="6" stroke="#A9C4FF" stroke-width="2.6"/></pattern><pattern id="pcd" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><line x1="0" y1="0" x2="0" y2="6" stroke="#3062F5" stroke-width="2.6"/></pattern><pattern id="pcs" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(55)"><line x1="0" y1="0" x2="0" y2="6" stroke="#2450D6" stroke-width="2.6"/></pattern><pattern id="pcp" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><line x1="0" y1="0" x2="0" y2="6" stroke="#D6E3FF" stroke-width="2.6"/></pattern><pattern id="pcm" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><line x1="0" y1="0" x2="0" y2="6" stroke="#6A94FF" stroke-width="2.6"/></pattern><clipPath id="pcc"><circle cx="100" cy="100" r="96"/></clipPath></defs><path d="M-30 112 A130 34 -14 0 1 230 88" fill="none" stroke="url(#pcm)" stroke-width="12"/><g clip-path="url(#pcc)"><rect width="200" height="200" fill="#fff"/><circle cx="100" cy="100" r="96" fill="url(#pcd)"/><circle cx="118" cy="82" r="96" fill="url(#pcl)"/><path d="M60 80 A20 14 0 1 0 100 80 A20 14 0 1 0 60 80 Z" fill="url(#pcp)" stroke="#2450D6" stroke-width="1.3" stroke-dasharray=".8 2.6" stroke-linecap="round"/><path d="M110 120 C 130 112, 150 125, 145 145 C 138 160, 115 155, 110 120 Z" fill="url(#pcm)" stroke="#2450D6" stroke-width="1.3" stroke-dasharray=".8 2.6" stroke-linecap="round"/></g><circle cx="100" cy="100" r="96" fill="none" stroke="#2450D6" stroke-width="1" stroke-dasharray="1 4" opacity=".55"/><path d="M230 88 A130 34 -14 0 1 -30 112" fill="none" stroke="url(#pcm)" stroke-width="12"/><path d="M230 88 A130 34 -14 0 1 -30 112" fill="none" stroke="#2450D6" stroke-width="1" stroke-dasharray="1 3"/></svg>
+  <svg class="planet planet--d" viewBox="0 0 200 200" aria-hidden="true"><defs><pattern id="pdl" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><line x1="0" y1="0" x2="0" y2="12" stroke="#A9C4FF" stroke-width="5.2"/></pattern><pattern id="pdd" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><line x1="0" y1="0" x2="0" y2="12" stroke="#3062F5" stroke-width="5.2"/></pattern><pattern id="pds" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(55)"><line x1="0" y1="0" x2="0" y2="12" stroke="#2450D6" stroke-width="5.2"/></pattern><pattern id="pdp" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><line x1="0" y1="0" x2="0" y2="12" stroke="#D6E3FF" stroke-width="5.2"/></pattern><pattern id="pdm" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><line x1="0" y1="0" x2="0" y2="12" stroke="#6A94FF" stroke-width="5.2"/></pattern><clipPath id="pdc"><circle cx="100" cy="100" r="96"/></clipPath></defs><g clip-path="url(#pdc)"><rect width="200" height="200" fill="#fff"/><circle cx="100" cy="100" r="96" fill="url(#pdd)"/><circle cx="135" cy="70" r="92" fill="#fff"/><circle cx="135" cy="70" r="92" fill="url(#pdp)" opacity=".5"/></g><circle cx="100" cy="100" r="96" fill="none" stroke="#2450D6" stroke-width="1" stroke-dasharray="1 4" opacity=".55"/></svg>
+  <svg class="planet planet--e" viewBox="0 0 200 200" aria-hidden="true"><defs><pattern id="pel" width="15" height="15" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><line x1="0" y1="0" x2="0" y2="15" stroke="#A9C4FF" stroke-width="6.5"/></pattern><pattern id="ped" width="15" height="15" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><line x1="0" y1="0" x2="0" y2="15" stroke="#3062F5" stroke-width="6.5"/></pattern><pattern id="pes" width="15" height="15" patternUnits="userSpaceOnUse" patternTransform="rotate(55)"><line x1="0" y1="0" x2="0" y2="15" stroke="#2450D6" stroke-width="6.5"/></pattern><pattern id="pep" width="15" height="15" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><line x1="0" y1="0" x2="0" y2="15" stroke="#D6E3FF" stroke-width="6.5"/></pattern><pattern id="pem" width="15" height="15" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><line x1="0" y1="0" x2="0" y2="15" stroke="#6A94FF" stroke-width="6.5"/></pattern><clipPath id="pec"><circle cx="100" cy="100" r="96"/></clipPath></defs><g clip-path="url(#pec)"><rect width="200" height="200" fill="#fff"/><circle cx="100" cy="100" r="96" fill="url(#ped)"/><circle cx="118" cy="82" r="96" fill="url(#pel)"/><path d="M65 95 A30 22 0 1 0 125 95 A30 22 0 1 0 65 95 Z" fill="url(#pep)" stroke="#2450D6" stroke-width="1.3" stroke-dasharray=".8 2.6" stroke-linecap="round"/></g><circle cx="100" cy="100" r="96" fill="none" stroke="#2450D6" stroke-width="1" stroke-dasharray="1 4" opacity=".55"/></svg>
+  <div class="stars" aria-hidden="true"><span class="star tw" style="left:4%;top:8%;width:12px;animation-delay:0.00s"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6" fill="none" stroke="#1F2FD0" stroke-width="2.5" stroke-dasharray="2 2.2"/></svg></span><span class="star" style="left:15%;top:6%;width:10px;animation-delay:0.37s"><svg viewBox="0 0 20 20"><path d="M10 0 C11 7,13 9,20 10 C13 11,11 13,10 20 C9 13,7 11,0 10 C7 9,9 7,10 0Z" fill="#A9C4FF"/></svg></span><span class="star tw" style="left:22%;top:18%;width:14px;animation-delay:0.74s"><svg viewBox="0 0 20 20"><path d="M10 0 C11 7,13 9,20 10 C13 11,11 13,10 20 C9 13,7 11,0 10 C7 9,9 7,10 0Z" fill="#6A94FF"/></svg></span><span class="star" style="left:8%;top:30%;width:8px;animation-delay:1.11s"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6" fill="none" stroke="#6A94FF" stroke-width="2.5" stroke-dasharray="2 2.2"/></svg></span><span class="star tw" style="left:18%;top:42%;width:8px;animation-delay:1.48s"><svg viewBox="0 0 20 20"><path d="M10 0 C11 7,13 9,20 10 C13 11,11 13,10 20 C9 13,7 11,0 10 C7 9,9 7,10 0Z" fill="#1F2FD0"/></svg></span><span class="star" style="left:3%;top:52%;width:18px;animation-delay:1.85s"><svg viewBox="0 0 20 20"><path d="M10 0 C11 7,13 9,20 10 C13 11,11 13,10 20 C9 13,7 11,0 10 C7 9,9 7,10 0Z" fill="#A9C4FF"/></svg></span><span class="star tw" style="left:14%;top:60%;width:8px;animation-delay:2.22s"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6" fill="none" stroke="#6A94FF" stroke-width="2.5" stroke-dasharray="2 2.2"/></svg></span><span class="star sm" style="left:26%;top:34%;width:12px;animation-delay:2.59s"><svg viewBox="0 0 20 20"><path d="M10 0 C11 7,13 9,20 10 C13 11,11 13,10 20 C9 13,7 11,0 10 C7 9,9 7,10 0Z" fill="#6A94FF"/></svg></span><span class="star tw" style="left:78%;top:10%;width:18px;animation-delay:2.96s"><svg viewBox="0 0 20 20"><path d="M10 0 C11 7,13 9,20 10 C13 11,11 13,10 20 C9 13,7 11,0 10 C7 9,9 7,10 0Z" fill="#1F2FD0"/></svg></span><span class="star" style="left:88%;top:4%;width:8px;animation-delay:0.33s"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6" fill="none" stroke="#A9C4FF" stroke-width="2.5" stroke-dasharray="2 2.2"/></svg></span><span class="star tw" style="left:95%;top:22%;width:18px;animation-delay:0.70s"><svg viewBox="0 0 20 20"><path d="M10 0 C11 7,13 9,20 10 C13 11,11 13,10 20 C9 13,7 11,0 10 C7 9,9 7,10 0Z" fill="#6A94FF"/></svg></span><span class="star sm" style="left:72%;top:22%;width:10px;animation-delay:1.07s"><svg viewBox="0 0 20 20"><path d="M10 0 C11 7,13 9,20 10 C13 11,11 13,10 20 C9 13,7 11,0 10 C7 9,9 7,10 0Z" fill="#6A94FF"/></svg></span><span class="star tw" style="left:84%;top:38%;width:8px;animation-delay:1.44s"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6" fill="none" stroke="#1F2FD0" stroke-width="2.5" stroke-dasharray="2 2.2"/></svg></span><span class="star" style="left:92%;top:48%;width:8px;animation-delay:1.81s"><svg viewBox="0 0 20 20"><path d="M10 0 C11 7,13 9,20 10 C13 11,11 13,10 20 C9 13,7 11,0 10 C7 9,9 7,10 0Z" fill="#A9C4FF"/></svg></span><span class="star tw" style="left:76%;top:52%;width:14px;animation-delay:2.18s"><svg viewBox="0 0 20 20"><path d="M10 0 C11 7,13 9,20 10 C13 11,11 13,10 20 C9 13,7 11,0 10 C7 9,9 7,10 0Z" fill="#6A94FF"/></svg></span><span class="star" style="left:97%;top:64%;width:14px;animation-delay:2.55s"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6" fill="none" stroke="#6A94FF" stroke-width="2.5" stroke-dasharray="2 2.2"/></svg></span><span class="star tw sm" style="left:30%;top:8%;width:8px;animation-delay:2.92s"><svg viewBox="0 0 20 20"><path d="M10 0 C11 7,13 9,20 10 C13 11,11 13,10 20 C9 13,7 11,0 10 C7 9,9 7,10 0Z" fill="#1F2FD0"/></svg></span><span class="star sm" style="left:66%;top:6%;width:10px;animation-delay:0.29s"><svg viewBox="0 0 20 20"><path d="M10 0 C11 7,13 9,20 10 C13 11,11 13,10 20 C9 13,7 11,0 10 C7 9,9 7,10 0Z" fill="#A9C4FF"/></svg></span><span class="star tw" style="left:24%;top:56%;width:8px;animation-delay:0.66s"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6" fill="none" stroke="#6A94FF" stroke-width="2.5" stroke-dasharray="2 2.2"/></svg></span><span class="star sm" style="left:70%;top:40%;width:18px;animation-delay:1.03s"><svg viewBox="0 0 20 20"><path d="M10 0 C11 7,13 9,20 10 C13 11,11 13,10 20 C9 13,7 11,0 10 C7 9,9 7,10 0Z" fill="#6A94FF"/></svg></span></div>
+  <svg class="orbits" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true"><path d="M-40 760 C 300 420, 900 380, 1500 560" fill="none" stroke="#C9D7F5" stroke-width="1.2"/><path d="M260 900 C 420 520, 1100 300, 1320 620" fill="none" stroke="#E3E7EE" stroke-width="1.2"/></svg>
+  <div class="wrap">
+    <h1>The AI centre for your business</h1>
+    <p class="sub">Client acquisition, websites, automations, custom software and AI agents for service businesses.</p>
+    <div class="btns"><span class="ring"><a class="btn btn--blue" href="https://cal.com/divine-uchenna-amakiri/discovery-call">Book a free discovery call</a></span></div>
+    <div class="stage">
+      <div class="chips" role="group" aria-label="Try an agent">
+        <button type="button" data-agent="0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h10M4 18h7"/></svg>Follow up quotes</button>
+        <button type="button" data-agent="1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Recover missed calls</button>
+        <button type="button" data-agent="2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg>Chase payments</button>
+      </div>
+      <aside class="assist" aria-hidden="true"><small>Assistant</small><p id="assistQ">Which quotes went quiet this week?</p></aside>
+      <div class="win">
+      <div class="win__bar"><i></i><i></i><i></i><span id="winTitle">Flowlyy: Quote Follow-up Agent</span><em class="win__hint">Click to try</em></div>
+      <div class="win__body">
+        <aside class="win__side">
+          <h4>Agents</h4>
+          <div id="agentList" role="group" aria-label="Agents"></div>
+          <h4>Connected</h4>
+          <ul><li>CRM</li><li>Gmail</li><li>WhatsApp</li><li>Calendar</li></ul>
+        </aside>
+        <div class="win__main">
+          <div class="agentbar" id="agentBar" role="group" aria-label="Agents"></div>
+          <div class="asks" id="asks" role="group" aria-label="Questions to ask"></div>
+          <div class="chat" id="chat" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="logos" aria-label="Tools we work with">
+  <div class="marq"><ul><li><img src="assets/tools/claude-code.svg" alt="" width="26" height="26">Claude Code</li><li><img src="assets/tools/codex.svg" alt="" width="26" height="26">Codex</li><li><img src="assets/tools/cursor.svg" alt="" width="26" height="26">Cursor</li><li><img src="assets/tools/gohighlevel.svg" alt="" width="26" height="26">GoHighLevel</li><li><img src="assets/tools/gemini.svg" alt="" width="26" height="26">Gemini</li><li><img src="assets/tools/grok.svg" alt="" width="26" height="26">Grok</li><li><img src="assets/tools/hermes-agent.svg" alt="" width="26" height="26">Hermes Agent</li><li><img src="assets/tools/openclaw.svg" alt="" width="26" height="26">OpenClaw</li><li aria-hidden="true"><img src="assets/tools/claude-code.svg" alt="" width="26" height="26">Claude Code</li><li aria-hidden="true"><img src="assets/tools/codex.svg" alt="" width="26" height="26">Codex</li><li aria-hidden="true"><img src="assets/tools/cursor.svg" alt="" width="26" height="26">Cursor</li><li aria-hidden="true"><img src="assets/tools/gohighlevel.svg" alt="" width="26" height="26">GoHighLevel</li><li aria-hidden="true"><img src="assets/tools/gemini.svg" alt="" width="26" height="26">Gemini</li><li aria-hidden="true"><img src="assets/tools/grok.svg" alt="" width="26" height="26">Grok</li><li aria-hidden="true"><img src="assets/tools/hermes-agent.svg" alt="" width="26" height="26">Hermes Agent</li><li aria-hidden="true"><img src="assets/tools/openclaw.svg" alt="" width="26" height="26">OpenClaw</li></ul></div>
+  <p>Plugs into the agents you already use</p>
+</section>
+
+<section id="systems">
+  <div class="wrap">
+    <div class="sys-head"><h2><strong>Flowlyy</strong> is the team that builds the systems your business runs on.</h2><a class="btn btn--soft" href="https://cal.com/divine-uchenna-amakiri/discovery-call">Book a discovery call</a></div>
+    <div class="feat">
+      <article><div class="feat__art" aria-hidden="true"><div class="mock"><div class="mw"><div class="in"><div class="tb"><i></i><i></i><i></i>Outreach · Email preview<span class=x>✕</span></div><div class="bd"><div class="row2"><span>To</span>Jane Moss · Bright Homes</div><div class="row2"><span>Subject</span><b>Quick idea for Bright Homes</b></div><p style="margin-top:.8em;line-height:1.5">Hi Jane, saw your kitchen refits in Leeds. We help fitters turn more quotes into booked jobs…</p></div></div></div><div class="fp"><div class="in"><div class="tb">Campaign report<span class="x">✕</span></div><div class="bd"><span style="color:#80848E">Open rate</span><div class="big">58%</div><div class="seg"><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b class="e"></b><b class="e"></b><b class="e"></b><b class="e"></b><b class="e"></b><b class="e"></b><b class="e"></b><b class="e"></b></div><div class="row2"><span>Sent</span>240</div><div class="row2"><span>Replied</span><span class="chip chip--g">↑ 14</span></div><div class="row2"><span>Calls booked</span>9</div></div></div></div></div></div><h3>Client acquisition &amp; lead generation</h3><p>A steady flow of the right enquiries. We find the clients you want, reach out for you and book the interested ones straight into your calendar.</p><ul><li>Lead generation</li><li>Outreach campaigns</li><li>Booked appointments</li></ul></article>
+      <article><div class="feat__art" aria-hidden="true"><div class="mock"><div class="mw"><div class="in"><div class="tb"><i></i><i></i><i></i>Website analytics<span class=x>✕</span></div><div class="bd"><span style="color:#80848E">Visitors this month</span><div class="big">4,812</div><div class="seg"><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b class="o"></b><b class="o"></b><b class="o"></b><b class="o"></b><b class="o"></b><b class="e"></b><b class="e"></b><b class="e"></b><b class="e"></b><b class="e"></b><b class="e"></b></div><span class="chip chip--g">↑ 32% vs last month</span><div class="row2" style="margin-top:.6em"><span>Enquiries</span>126</div><div class="row2"><span>Conversion</span>2.6%</div></div></div></div><div class="fp"><div class="in"><div class="tb"><span style="width:.6em;height:.6em;border-radius:50%;background:#7ACB6A"></span>Live enquiries</div><div class="bd" style="padding-top:.2em"><div class="row2"><div class="who2"><span class="av">JK</span><div><b>James King</b><small>Bathroom refit</small></div></div><span class="chip chip--b">New</span></div><div class="row2"><div class="who2"><span class="av">LA</span><div><b>Lucy Ahmed</b><small>Physio session</small></div></div><span class="chip chip--b">New</span></div><div class="row2"><div class="who2"><span class="av">OB</span><div><b>Owen Bell</b><small>Boiler service</small></div></div><span class="chip chip--g">Booked</span></div></div></div></div></div></div><h3>Growth systems</h3><p>Get found, get enquiries and never lose a lead. Every enquiry is qualified and lands in your CRM with an owner and a next step.</p><ul><li>Websites</li><li>Funnels &amp; landing pages</li><li>CRM setup &amp; migration</li></ul></article>
+      <article><div class="feat__art" aria-hidden="true"><div class="mock"><div class="mw"><div class="in"><div class="tb"><i></i><i></i><i></i>Workflow · Quote signed<span class=x>✕</span></div><div class="bd" style="padding-top:.3em"><div class="row2">1. Quote signed in CRM<span class="chip chip--b">Trigger</span></div><div class="row2">2. Create job card<span class="chip chip--g">✓ Done</span></div><div class="row2">3. Order materials<span class="chip chip--g">✓ Done</span></div><div class="row2">4. Text the customer<span class="chip chip--g">✓ Done</span></div><div class="row2">5. Brief the crew<span class="chip chip--y">Running</span></div></div></div></div><div class="fp"><div class="in"><div class="tb">Automations today<span class="x">✕</span></div><div class="bd"><span style="color:#80848E">Tasks run</span><div class="big">126</div><div class="seg"><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b class="o"></b></div><div class="row2"><span>Hours saved</span>9.5</div><div class="row2"><span>Errors</span><span class="chip chip--g">0</span></div></div></div></div></div></div><h3>Automation</h3><p>The boring work, done on its own. Your tools talk to each other, follow-ups go out on time and your numbers update themselves.</p><ul><li>Dashboards</li><li>Workflow automation</li><li>Follow-up &amp; nurture</li></ul></article>
+      <article><div class="feat__art" aria-hidden="true"><div class="mock"><div class="mw"><div class="in"><div class="tb"><i></i><i></i><i></i>Jobs board<span class=x>✕</span></div><div class="bd" style="padding-top:.3em"><div class="row2"><div class="who2"><span class="av">BR</span><div><b>Bathroom refit</b><small>Leeds · Sam</small></div></div><span class="chip chip--b">In progress</span></div><div class="row2"><div class="who2"><span class="av">KF</span><div><b>Kitchen fit</b><small>York · Ade</small></div></div><span class="chip chip--y">Waiting parts</span></div><div class="row2"><div class="who2"><span class="av">BS</span><div><b>Boiler swap</b><small>Durham · Sam</small></div></div><span class="chip chip--g">Complete</span></div></div></div></div><div class="fp"><div class="in"><div class="tb">Customer login<span class="x">✕</span></div><div class="bd"><b>Welcome back, Tom</b><div class="lbl">Your bathroom refit</div><div class="bar2"><b style="width:80%"></b></div><div class="row2"><span>Next visit</span>Thu 9am</div><div class="row2"><span>Balance</span><span class="chip chip--g">Paid</span></div></div></div></div></div></div><h3>Custom software</h3><p>Tools shaped around how you work. Portals your customers log into and internal tools your team actually wants to use.</p><ul><li>Client portals</li><li>Internal tools</li><li>Web apps &amp; SaaS</li></ul></article>
+      <article><div class="feat__art" aria-hidden="true"><div class="mock"><div class="mw"><div class="in"><div class="tb"><i></i><i></i><i></i>Knowledge assistant<span class=x>✕</span></div><div class="bd"><div class="msgx a">Do we cover weekend callouts?</div><div class="msgx u">Yes, Saturdays 8am–2pm at the standard rate. Sundays are emergency only.<br><span style="color:#80848E;font-size:.85em">Source: Callout policy, p.2</span></div><div class="msgx a">Great, thanks</div></div></div></div><div class="fp"><div class="in"><div class="tb"><span style="width:.6em;height:.6em;border-radius:50%;background:#FF5F57"></span>Voice agent · Live call</div><div class="bd"><div style="display:flex;align-items:center;gap:.25em;height:2.4em"><b style="width:.3em;height:0.6em;border-radius:.2em;background:#3062F5;display:block"></b><b style="width:.3em;height:1.4em;border-radius:.2em;background:#3062F5;display:block"></b><b style="width:.3em;height:2em;border-radius:.2em;background:#3062F5;display:block"></b><b style="width:.3em;height:1em;border-radius:.2em;background:#3062F5;display:block"></b><b style="width:.3em;height:1.8em;border-radius:.2em;background:#3062F5;display:block"></b><b style="width:.3em;height:2.2em;border-radius:.2em;background:#3062F5;display:block"></b><b style="width:.3em;height:1.2em;border-radius:.2em;background:#3062F5;display:block"></b><b style="width:.3em;height:0.8em;border-radius:.2em;background:#3062F5;display:block"></b><b style="width:.3em;height:1.6em;border-radius:.2em;background:#3062F5;display:block"></b><b style="width:.3em;height:2em;border-radius:.2em;background:#3062F5;display:block"></b><b style="width:.3em;height:1em;border-radius:.2em;background:#3062F5;display:block"></b><b style="width:.3em;height:0.6em;border-radius:.2em;background:#3062F5;display:block"></b><b style="width:.3em;height:1.4em;border-radius:.2em;background:#3062F5;display:block"></b><b style="width:.3em;height:0.9em;border-radius:.2em;background:#3062F5;display:block"></b></div><div class="row2"><span>Caller</span>Emma · Leeds</div><div class="row2"><span>Intent</span>Book a service</div><div class="row2"><span>Status</span><span class="chip chip--g">Booking…</span></div></div></div></div></div></div><h3>AI systems</h3><p>Answers, calls back and remembers. AI that handles the first conversation day and night, then books the job or hands it to you.</p><ul><li>Chatbots</li><li>Voice agents</li><li>Knowledge assistants</li></ul></article>
+    </div>
+  </div>
+</section>
+
+<section id="can" style="padding-top:0">
+  <div class="wrap">
+    <p class="can-label">See what Flowlyy can do for your business</p>
+    <div class="can" role="group" aria-label="Previews">
+      <button type="button" data-p="0" aria-pressed="true" aria-controls="pv"><span class="ci" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><circle cx="4" cy="5" r="2"/><circle cx="20" cy="5" r="2"/><circle cx="4" cy="19" r="2"/><circle cx="20" cy="19" r="2"/><path d="M6 6l4 4M18 6l-4 4M6 18l4-4M18 18l-4-4"/></svg></span><b>Connect your systems →</b></button>
+      <button type="button" data-p="1" aria-pressed="false" aria-controls="pv"><span class="ci" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg></span><b>Clean up your CRM →</b></button>
+      <button type="button" data-p="2" aria-pressed="false" aria-controls="pv"><span class="ci" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span><b>Automate follow-ups →</b></button>
+      <button type="button" data-p="3" aria-pressed="false" aria-controls="pv"><span class="ci" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 8h18M7 12h6M7 16h10"/></svg></span><b>Build a website that converts →</b></button>
+      <button type="button" data-p="4" aria-pressed="false" aria-controls="pv"><span class="ci" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10v4h3l7 4V6L6 10z"/><path d="M16.5 9a4 4 0 0 1 0 6M19 6.5a7.5 7.5 0 0 1 0 11"/></svg></span><b>Win clients with Facebook ads →</b></button>
+    </div>
+    <div class="pv" id="pv" aria-live="polite"></div>
+  </div>
+</section>
+
+<section id="how" style="padding-top:0">
+  <div class="wrap">
+    <h2>How it works.</h2>
+    <div class="grid4">
+      <div><b>01</b><h3>We listen</h3><p>A free call about what's eating your time.</p></div>
+      <div><b>02</b><h3>We map it</h3><p>Only the parts that will actually move the needle.</p></div>
+      <div><b>03</b><h3>We build it</h3><p>In the tools you already use, with progress you can see.</p></div>
+      <div><b>04</b><h3>We run it</h3><p>We watch it, fix what's off and keep improving it.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" style="padding-top:0">
+  <div class="wrap">
+    <h2>Pricing that fits what you need.</h2>
+    <p class="sub">Every business is different, so we don't sell packages off a shelf. You pay for what you actually want to implement, and we scope it together on a free call.</p>
+    <div class="tiers"><article class="tier"><h3>Single system</h3><p>Start with the one thing costing you the most clients or time.</p><div class="tier__price">Scoped to you</div><ul><li>One system, built and set up</li><li>Facebook ads, website, CRM, automation or an AI assistant</li><li>Built in the tools you already use</li><li>Training so your team can run it</li></ul><a class="btn btn--soft" href="https://cal.com/divine-uchenna-amakiri/discovery-call">Book a call to scope it</a></article><article class="tier tier--mid"><h3>Connected systems</h3><p>A few systems working together so nothing falls through the gaps.</p><div class="tier__price">Scoped to you</div><ul><li>Everything in Single system</li><li>Leads flow from ads to CRM to calendar</li><li>Follow-ups and invoices chased automatically</li><li>One dashboard for the numbers that matter</li></ul><a class="btn btn--soft" href="https://cal.com/divine-uchenna-amakiri/discovery-call">Book a call to scope it</a></article><article class="tier"><h3>Full growth engine</h3><p>Client acquisition through to delivery, fully managed for you.</p><div class="tier__price">Scoped to you</div><ul><li>Everything in Connected systems</li><li>Ongoing ad management and optimisation</li><li>AI assistant answering calls and chats 24/7</li><li>Monthly review and improvements</li></ul><a class="btn btn--soft" href="https://cal.com/divine-uchenna-amakiri/discovery-call">Book a call to scope it</a></article></div>
+    <p class="tiers__note">Not sure where to start? Book a free call and we'll tell you honestly what to fix first.</p>
+  </div>
+</section>
+
+<section id="faq" style="padding-top:0">
+  <div class="wrap">
+    <h2>Questions.</h2>
+    <div class="faq">
+      <details><summary>Who do you work with?</summary><p>Service businesses that win work through enquiries, quotes and follow-up: trades and home services, clinics, consultancies and agencies.</p></details>
+      <details><summary>Do I need all five systems?</summary><p>No. Start with the one that's hurting most. We only add more when it'll genuinely help.</p></details>
+      <details><summary>Do I need to be technical?</summary><p>Not at all. We build it, set it up and show you how it works in plain English.</p></details>
+      <details><summary>What does it cost?</summary><p>It depends on what we put in place. We'll go through it properly on your free call.</p></details>
+      <details><summary>Will the AI say something wrong to customers?</summary><p>You set the rules and approve anything important before it goes out.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="end">
+  <div class="wrap">
+    <h2>Tell us what's slowing you down.</h2>
+    <p class="sub">A free 30-minute call. No hard sell, just a straight answer.</p>
+    <div class="btns">
+      <a class="btn btn--soft" href="https://cal.com/divine-uchenna-amakiri/discovery-call">Book a free discovery call</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="foot__art">
+    <div class="wrap foot__top">
+      <a class="foot__logo" href="#"><img src="assets/logo/flowlyy-logo.svg" alt="Flowlyy"></a>
+      <nav class="foot__nav" aria-label="Footer">
+        <div><h4>Explore</h4><a href="#systems">What we build</a><a href="#how">How it works</a><a href="#faq">FAQ</a></div>
+        <div><h4>Talk to us</h4><a href="https://cal.com/divine-uchenna-amakiri/discovery-call">Book a discovery call</a></div>
       </nav>
+      <div class="socials2"><a class="soc" href="https://x.com/FlowlyybuildsAI" target="_blank" rel="noopener" aria-label="Flowlyy on X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.2-8.3L1.8 3h6.4l4.4 5.8zm-1.1 16.2h1.7L7.4 4.7H5.6z"/></svg></a><a class="soc" href="https://www.linkedin.com/in/divineamakiri/" target="_blank" rel="noopener" aria-label="Divine on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.2c0-1.24-.02-2.84-1.73-2.84-1.73 0-2 1.35-2 2.75V21h-4z"/></svg></a><a class="soc" href="https://www.instagram.com/divinebiz_/" target="_blank" rel="noopener" aria-label="Divine on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a></div>
     </div>
-  </header>
+  </div>
+  <div class="foot__base"><div class="wrap"><span>Flowlyy</span><span>Service business systems, built for you.</span></div></div>
+</footer>
 
-  <main id="main">
-    <!-- Hero -->
-    <section class="wrap hero" aria-labelledby="hero-title">
-      <div class="badge-row label">
-        <span class="badge">[ For Founders & Professionals ]</span>
-      </div>
+<script>
+(function(){
+  /* hero demo */
+  var A=[
+   {n:'Quote Follow-up',t:'Quote Follow-up Agent',q:[
+    {a:'Which quotes went quiet this week?',s:['Pulling 41 open quotes from the CRM','Checking who opened the PDF and who ignored it','Drafting follow-ups in your voice'],
+     r:'<b>6 quotes</b> have gone quiet for 5+ days, worth <b>£38,400</b>. Follow-ups are drafted: a text for the two who opened the PDF, an email for the rest.',f:'Worked for 40 seconds, 41 quotes reviewed',b:['Approve and send 6 drafts','6 follow-ups sent']},
+    {a:'Draft a follow-up for the Jesmond quote',s:['Opening quote #1042 for Jesmond','Last contact 6 days ago, PDF opened twice','Writing it the way you would'],
+     r:'Here\'s the draft, ready to go by text:<q>"Hi Mark, just checking the kitchen quote reached you OK. Happy to pop round and talk it through. Are you free Thursday?"</q>',f:'Worked for 12 seconds',b:['Approve and send','Sent to Mark']}]},
+   {n:'Missed Call Recovery',t:'Missed Call Recovery Agent',q:[
+    {a:'Who rang while I was with a customer?',s:['Checking today\'s call log','Matching numbers against the CRM','Texting each caller back'],
+     r:'<b>3 missed calls</b>: two new enquiries and one existing customer. All three have been texted back, and one new enquiry has already booked a visit for <b>Wednesday 10am</b>.',f:'Worked for 25 seconds, 3 callers contacted',b:null},
+    {a:'Book the other enquiry in',s:['Checking your calendar for gaps','Offering Thursday 2pm or Friday 10am','Waiting for their reply'],
+     r:'Options sent to the customer. As soon as they pick a slot it goes straight into your calendar and they get a confirmation text.',f:'Worked for 18 seconds',b:['Approve the booking when they reply','You\'ll get a nudge']}]},
+   {n:'Payment Chaser',t:'Payment Chaser Agent',q:[
+    {a:'Which invoices are overdue?',s:['Reading your invoices','Finding anything past its due date','Writing polite reminders'],
+     r:'<b>4 invoices</b> are overdue, worth <b>£11,250</b>. The oldest is 14 days late. Friendly reminders are drafted, and the 14-day one is flagged for a personal call.',f:'Worked for 30 seconds, 38 invoices checked',b:['Approve and send 3 reminders','3 reminders sent']},
+    {a:'What cash is coming in this week?',s:['Checking invoices due this week','Weighing up who usually pays on time','Building the forecast'],
+     r:'Expect <b>£6,800</b> from 3 invoices due this week. <b>£2,100</b> of that is at risk because that customer paid late last time, so it\'s worth a nudge on Wednesday.',f:'Worked for 22 seconds',b:null}]}
+  ];
+  var side=document.getElementById('agentList'),bar=document.getElementById('agentBar'),asks=document.getElementById('asks'),chat=document.getElementById('chat'),title=document.getElementById('winTitle');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches,cur=0,timers=[];
+  function wait(fn,ms){timers.push(setTimeout(fn,reduce?0:ms))}
+  function clear(){timers.forEach(clearTimeout);timers=[]}
+  function mk(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e}
+  function agents(){[side,bar].forEach(function(box){box.innerHTML='';A.forEach(function(a,i){
+    var b=mk('button',null,a.n);b.type='button';b.setAttribute('aria-pressed',i===cur);
+    b.onclick=function(){pick(i,0)};box.appendChild(b)})})}
+  function pick(i,qi){cur=i;title.textContent='Flowlyy: '+A[i].t;agents();
+    asks.innerHTML='';A[i].q.forEach(function(q,j){var b=mk('button',null,q.a);b.type='button';b.setAttribute('aria-pressed',j===qi);b.onclick=function(){ask(j)};asks.appendChild(b)});
+    ask(qi)}
+  function ask(qi){
+    clear();var q=A[cur].q[qi];
+    [].forEach.call(asks.children,function(b,j){b.setAttribute('aria-pressed',j===qi)});
+    chat.innerHTML='';chat.appendChild(mk('div','bubble',q.a));
+    var steps=mk('div','steps');chat.appendChild(steps);
+    q.s.forEach(function(t,k){wait(function(){steps.appendChild(mk('div',null,t))},500+k*700)});
+    wait(function(){
+      var ans=mk('div','answer',q.r+'<small>'+q.f+'</small>');
+      if(q.b){var btn=mk('button','btn btn--soft btn--sm act',q.b[0]);btn.type='button';
+        btn.onclick=function(){btn.disabled=true;btn.textContent='Done: '+q.b[1]};ans.appendChild(btn)}
+      chat.appendChild(ans)},500+q.s.length*700+400);
+  }
+  var chipBtns=[].slice.call(document.querySelectorAll('.chips button')),aq=document.getElementById('assistQ');
+  chipBtns.forEach(function(b){b.addEventListener('click',function(){pick(+b.dataset.agent,0)})});
+  var _ask=ask;ask=function(qi){_ask(qi);if(aq)aq.textContent=A[cur].q[qi].a;chipBtns.forEach(function(b){b.setAttribute('aria-pressed',+b.dataset.agent===cur)})};
+  /* can-do previews */
+  var PV=[
+   {t:'Connect your systems',p:'Your CRM, inbox, calendar and invoices stop living on separate islands. Details flow between them, so nobody copies and pastes.',b:'Connect them',
+    h:'<div class="orb"><svg class="orb__lines" aria-hidden="true"></svg><div class="orb__core">Flowlyy</div><div class="ob" data-n="CRM" style="--c:#8B5CF6"><span class="ob__i"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="3.2"/><circle cx="16" cy="10" r="2.6"/><path d="M3.5 18c.8-3 3-4.5 5.5-4.5s4.7 1.5 5.5 4.5M14 14.2c2.2-.3 4.6.8 5.5 3.8"/></svg></span><em>CRM</em></div><div class="ob" data-n="Gmail" style="--c:#fff"><span class="ob__i ob__i--brand" style="background:#fff"><svg viewBox="0 0 24 24"><path d="M3 7.6V18h3.6v-7.7L12 14.2l5.4-3.9V18H21V7.6a1.9 1.9 0 0 0-3-1.5L12 10.4 6 6.1a1.9 1.9 0 0 0-3 1.5z" fill="#EA4335"/><path d="M3 7.6V18h3.6v-7.7L3 7.7z" fill="#4285F4"/><path d="M17.4 10.3V18H21V7.7z" fill="#34A853"/><path d="M21 7.6a1.9 1.9 0 0 0-3-1.5l-.6.4v3.8L21 7.7z" fill="#FBBC04"/><path d="M3 7.6a1.9 1.9 0 0 1 3-1.5l.6.4v3.8L3 7.7z" fill="#C5221F"/></svg></span><em>Gmail</em></div><div class="ob" data-n="Calendar" style="--c:#fff"><span class="ob__i ob__i--brand" style="background:#fff"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2.5" fill="#fff" stroke="#4285F4" stroke-width="1.6"/><path d="M4 8.5h16" stroke="#4285F4" stroke-width="3"/><text x="12" y="17.6" font-size="8" font-weight="700" fill="#1A73E8" text-anchor="middle" font-family="Inter,Arial,sans-serif">31</text></svg></span><em>Calendar</em></div><div class="ob" data-n="WhatsApp" style="--c:#fff"><span class="ob__i ob__i--brand" style="background:#25D366"><svg viewBox="0 0 24 24"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.2 20.8l4.5-1.2A8.8 8.8 0 1 0 12 3.2z" fill="#fff"/><path d="M9.3 7.7c.3 0 .5 0 .7.5l.8 1.9c.1.3 0 .5-.2.7l-.6.7c.6 1.2 1.7 2.3 2.9 2.9l.7-.6c.2-.2.4-.3.7-.2l1.9.8c.4.2.5.4.5.7 0 1.2-1 2.2-2.3 2.1-3.3-.3-6.1-3.1-6.4-6.4-.1-1.3.9-2.3 2.1-2.3z" fill="#25D366"/></svg></span><em>WhatsApp</em></div><div class="ob" data-n="Invoices" style="--c:#F59E0B"><span class="ob__i"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h7M9 16h5"/></svg></span><em>Invoices</em></div><div class="ob" data-n="Forms" style="--c:#EC4899"><span class="ob__i"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 9l1.5 1.5L12 8M8 15l1.5 1.5L12 14M14 9.5h3M14 15.5h3"/></svg></span><em>Forms</em></div><div class="ob" data-n="Sheets" style="--c:#fff"><span class="ob__i ob__i--brand" style="background:#fff"><svg viewBox="0 0 24 24"><path d="M6 2.8h8.5L19 7.3V20a1.2 1.2 0 0 1-1.2 1.2H6A1.2 1.2 0 0 1 4.8 20V4A1.2 1.2 0 0 1 6 2.8z" fill="#0F9D58"/><path d="M14.5 2.8v4.5H19z" fill="#87CEAC"/><path d="M8 11h8v6.5H8z" fill="#fff"/><path d="M8 13.2h8M8 15.3h8M11.2 11v6.5" stroke="#0F9D58" stroke-width=".9"/></svg></span><em>Sheets</em></div><div class="ob" data-n="Phone" style="--c:#fff"><span class="ob__i ob__i--brand" style="background:linear-gradient(#6EE38A,#2FC350)"><svg viewBox="0 0 24 24"><path d="M7.2 4.5h2.4c.5 0 .9.3 1 .8l.7 3c.1.4-.1.9-.5 1.1l-1.4.9a10.4 10.4 0 0 0 4.3 4.3l.9-1.4c.2-.4.7-.6 1.1-.5l3 .7c.5.1.8.5.8 1v2.4c0 .8-.7 1.5-1.5 1.5C11.6 18.3 5.7 12.4 5.7 6c0-.8.7-1.5 1.5-1.5z" fill="#fff"/></svg></span><em>Phone</em></div></div>',
+    go:function(box){orbConnect(box)},r:'All 8 tools connected'},
+   {t:'Clean up your CRM',p:'Duplicates merged, missing owners filled in and every lead given a next step, so your pipeline is something you can trust.',b:'Run the clean-up',
+    h:'<table class="tbl"><tr><th>Lead</th><th>Owner</th><th>Next step</th></tr><tr><td>Sarah Khan</td><td class="o">—</td><td class="n">—</td></tr><tr class="dup"><td>Sarah Khan (dup)</td><td>—</td><td>—</td></tr><tr><td>Tom Reid</td><td class="o">—</td><td class="n">—</td></tr><tr class="dup"><td>T. Reid (dup)</td><td>Sam</td><td>—</td></tr><tr><td>Priya Shah</td><td class="o">—</td><td class="n">—</td></tr></table>',
+    go:function(box){var own=['Sam','Ade','Sam'],nx=['Call Thu','Send quote','Book visit'];box.querySelectorAll('td.o').forEach(function(td,i){setTimeout(function(){td.innerHTML='<span class="tag2 tag2--ok">'+own[i]+'</span>';box.querySelectorAll('td.n')[i].textContent=nx[i]},400+i*250)})},r:'2 duplicates merged, 3 owners assigned'},
+   {t:'Automate follow-ups',p:'Every quote and enquiry gets chased on time, in your voice, until they reply. You only step in when there\'s a real conversation.',b:'Start the sequence',
+    h:'<ul class="tl"><li><em>Day 0</em>Quote sent to Mark</li><li><em>Day 2</em>Friendly check-in text</li><li><em>Day 5</em>Photo of a similar job emailed</li><li class="r"><em>Day 6</em>Mark: "Looks great, can we go ahead?"</li></ul>',
+    go:function(box){box.querySelectorAll('.tl li').forEach(function(li,i){setTimeout(function(){li.classList.add('on');if(li.classList.contains('r'))li.classList.add('reply')},300+i*600)})},r:'Mark replied, job won'},
+   {t:'Build a website that converts',p:'A fast, clear site that says what you do, shows proof and turns visitors into enquiries that land straight in your CRM.',b:'Build the site',
+    h:'<div class="site"><div class="bar"><i></i><i></i><i></i></div><div class="blk h">Boiler installs in Leeds, done in a day</div><div class="blk">★★★★★ 120 local reviews</div><div class="blk">Get a quote in 60 seconds →</div></div><div class="toast">New enquiry: boiler quote, LS6</div>',
+    go:function(box){setTimeout(function(){box.querySelector('.toast').classList.add('show')},1100)},r:'First enquiry in'},
+   {t:'Win clients with Facebook ads',p:'We build the ads, target the right local customers and send every lead straight to your CRM and calendar, so the ad spend turns into booked jobs.',b:'Launch campaign',
+    h:'<div class="adm"><div class="adm__bar"><b>Ads manager</b><span>Last 7 days</span></div><table class="ads"><thead><tr><th>On</th><th>Ad set</th><th>Delivery</th><th>Leads</th><th>Cost/lead</th><th>Reach</th><th>Spent</th></tr></thead><tbody><tr><td><span class="tg"></span></td><td class="nm">Local homeowners · Quote offer</td><td class="dl"><i></i><span>Off</span></td><td data-k="leads">—</td><td data-k="cpl">—</td><td data-k="reach">—</td><td data-k="spent">£0.00</td></tr></tbody></table><div class="adm__kpi"><div><small>Impressions</small><b data-k="imp">0</b></div><div><small>Clicks</small><b data-k="clk">0</b></div><div><small>Booked calls</small><b data-k="calls">0</b></div></div><div class="toasts"></div></div>',
+    go:function(box){adsLaunch(box)},r:'Campaign live: 38 leads'}
+  ];
+  function wire(box,draw){var hub=box.querySelector('.hub');if(!hub)return;var svg=hub.querySelector('.wires'),H=hub.getBoundingClientRect(),coreEl=hub.querySelector('.core'),C=coreEl.getBoundingClientRect();
+    svg.setAttribute('viewBox','0 0 '+H.width+' '+H.height);svg.innerHTML='';
+    var cl=C.left-H.left,cr=C.right-H.left,ct=C.top-H.top,cb=C.bottom-H.top,ccx=(cl+cr)/2,ccy=(ct+cb)/2,ns='http://www.w3.org/2000/svg',n=0;
+    hub.querySelectorAll('.tool:not(.core)').forEach(function(el){var r=el.getBoundingClientRect(),l=r.left-H.left,rt=r.right-H.left,t=r.top-H.top,bt=r.bottom-H.top,mx=(l+rt)/2,my=(t+bt)/2,a,b,d;
+      if(rt<=cl+2){var f=my<ct?.28:my>cb?.72:.5;a=[rt,my];b=[cl,ct+(cb-ct)*f];var k=(b[0]-a[0])*.55;d='M'+a+' C'+(a[0]+k)+' '+a[1]+','+(b[0]-k)+' '+b[1]+','+b;}
+      else if(l>=cr-2){var f2=my<ct?.28:my>cb?.72:.5;a=[l,my];b=[cr,ct+(cb-ct)*f2];var k2=(a[0]-b[0])*.55;d='M'+a+' C'+(a[0]-k2)+' '+a[1]+','+(b[0]+k2)+' '+b[1]+','+b;}
+      else if(bt<=ct+2){a=[mx,bt];b=[ccx,ct];var k3=(b[1]-a[1])*.55;d='M'+a+' C'+a[0]+' '+(a[1]+k3)+','+b[0]+' '+(b[1]-k3)+','+b;}
+      else{a=[mx,t];b=[ccx,cb];var k4=(a[1]-b[1])*.55;d='M'+a+' C'+a[0]+' '+(a[1]-k4)+','+b[0]+' '+(b[1]+k4)+','+b;}
+      var p=document.createElementNS(ns,'path');p.setAttribute('d',d);svg.appendChild(p);
+      var c=document.createElementNS(ns,'circle');c.setAttribute('cx',b[0]);c.setAttribute('cy',b[1]);c.setAttribute('r',3);svg.appendChild(c);
+      var L=p.getTotalLength(),delay=reduce?0:n*90;n++;p.style.strokeDasharray=L;
+      if(draw&&!reduce){p.style.strokeDashoffset=L;c.style.opacity=0;c.style.transform='scale(0)';
+        requestAnimationFrame(function(){requestAnimationFrame(function(){p.style.transitionDelay=delay+'ms';p.style.strokeDashoffset=0;c.style.transitionDelay=(delay+1000)+'ms';c.style.opacity=1;c.style.transform='scale(1)'})})}
+      else{p.style.strokeDashoffset=0}});
+    if(draw)setTimeout(function(){coreEl.classList.add('pulse')},reduce?0:n*90+1100)}
+  window.addEventListener('resize',function(){var b=document.querySelector('#pv .stagebox.done');if(b)wire(b,false)});
+  var orbRaf=null;
+  function orbStart(box){cancelAnimationFrame(orbRaf);var o=box.querySelector('.orb');if(!o)return;
+    var obs=[].slice.call(o.querySelectorAll('.ob')),core=o.querySelector('.orb__core'),svg=o.querySelector('.orb__lines'),N=obs.length,t0=performance.now(),ns='http://www.w3.org/2000/svg';
+    svg.innerHTML='';var lines=obs.map(function(){var l=document.createElementNS(ns,'line');svg.appendChild(l);return l});
+    function frame(now){var W=o.clientWidth,H=o.clientHeight,cx=W/2,cy=H/2,rx=W*.42,ry=H*.36,t=reduce?0:(now-t0)/1000;
+      svg.setAttribute('viewBox','0 0 '+W+' '+H);var cr=core.getBoundingClientRect(),orr=o.getBoundingClientRect(),hw=cr.width/2,hh=cr.height/2;
+      obs.forEach(function(el,i){var a=i/N*Math.PI*2+t*.22,x=cx+rx*Math.cos(a),y=cy+ry*Math.sin(a),d=(Math.sin(a)+1)/2,sc=.72+.38*d;
+        el.style.transform='translate('+(x-24)+'px,'+(y-24)+'px) scale('+sc.toFixed(3)+')';el.style.zIndex=d>.5?3:1;el.style.opacity=(.55+.45*d).toFixed(2);
+        var l=lines[i],dx=x-cx,dy=y-cy,k=Math.min(hw/Math.abs(dx||1e-6),hh/Math.abs(dy||1e-6));
+        l.setAttribute('x1',x);l.setAttribute('y1',y);l.setAttribute('x2',cx+dx*k);l.setAttribute('y2',cy+dy*k);l.setAttribute('class',el.classList.contains('on')?'on':'');l.style.opacity=el.classList.contains('on')?(.35+.65*d).toFixed(2):0});
+      if(!reduce)orbRaf=requestAnimationFrame(frame)}
+    orbRaf=requestAnimationFrame(frame);if(reduce)frame(t0)}
+  function orbConnect(box){var obs=box.querySelectorAll('.ob');obs.forEach(function(el,i){setTimeout(function(){el.classList.add('on');if(reduce)orbStart(box)},reduce?0:250+i*140)});
+    setTimeout(function(){var c=box.querySelector('.orb__core');c.classList.add('pulse')},reduce?0:250+obs.length*140+200)}
+  function adsLaunch(box){var a=box.querySelector('.adm');a.classList.add('live');a.querySelector('.dl span').textContent='Active';
+    var T={leads:[38,0,''],cpl:[6.4,2,'£'],reach:[12480,0,''],spent:[243.2,2,'£'],imp:[31902,0,''],clk:[1146,0,''],calls:[14,0,'']},D=reduce?0:2200,t0=performance.now();
+    function fmt(v,d,p){return p+(d?v.toFixed(d):Math.round(v).toLocaleString('en-GB'))}
+    (function tick(now){var k=Math.min(1,(now-t0)/(D||1)),e=1-Math.pow(1-k,3);Object.keys(T).forEach(function(n){var el=a.querySelector('[data-k="'+n+'"]');if(el)el.textContent=fmt(T[n][0]*e,T[n][1],T[n][2])});if(k<1)requestAnimationFrame(tick)})(t0+(D?0:1));
+    var names=['Sarah K. · Leeds','Tom R. · York','Priya S. · Durham'],tb=a.querySelector('.toasts');
+    names.forEach(function(n,i){setTimeout(function(){var d=document.createElement('div');d.className='lt';d.innerHTML='<i></i>New lead: <b>'+n+'</b>';tb.appendChild(d);setTimeout(function(){d.classList.add('out');setTimeout(function(){d.remove()},400)},reduce?0:1900)},reduce?0:700+i*650)})}
+  var pv=document.getElementById('pv'),cbtn=[].slice.call(document.querySelectorAll('.can button'));
+  function showPv(i){cbtn.forEach(function(b,j){b.setAttribute('aria-pressed',j===i)});var d=PV[i];
+    pv.innerHTML='<div><h3>'+d.t+'</h3><p>'+d.p+'</p><button type="button" class="btn btn--soft">'+d.b+'</button></div><div class="stagebox">'+d.h+'</div>';
+    var box=pv.querySelector('.stagebox'),go=pv.querySelector('.btn');orbStart(box);
+    go.addEventListener('click',function(){go.disabled=true;box.classList.add('done');d.go(box);setTimeout(function(){go.textContent=d.r},reduce?0:1400)});}
+  cbtn.forEach(function(b,i){b.addEventListener('click',function(){showPv(i)})});
+  showPv(0);
+  pick(0,0);
 
-      <h1 id="hero-title" class="display display--2xl">Build your AI<br>operating system</h1>
-
-      <p class="hero__lede">
-        You already know ChatGPT and Claude can answer a question. An AI operating system does the work: drafts your emails, pulls your reports together, chases what's overdue and backs your research, built around how you actually work.
-      </p>
-
-      <div class="hero__actions">
-        <a class="btn btn--blue btn--lg" href="https://cal.com/divine-uchenna-amakiri/discovery-call">Let's chat</a>
-        <a class="btn btn--lg" href="#product">See how it works</a>
-      </div>
-
-      <!-- Tools marquee -->
-      <div class="marquee" role="group" aria-label="What's under the bonnet">
-        <p class="marquee__cap label label--caption">What's under the bonnet. You don't need to know any of it.</p>
-        <div class="marquee__viewport">
-          <ul class="marquee__track">
-            <li class="tool"><span class="tool__icon"><img src="assets/tools/claude-code.svg" alt="Claude Code" width="24" height="24"></span></li>
-            <li class="tool"><span class="tool__icon"><img src="assets/tools/grok.svg" alt="Grok" width="24" height="24"></span></li>
-            <li class="tool"><span class="tool__icon"><img src="assets/tools/cursor.svg" alt="Cursor" width="24" height="24"></span></li>
-            <li class="tool"><span class="tool__icon"><img src="assets/tools/loom.svg" alt="Loom" width="24" height="24"></span></li>
-            <li class="tool"><span class="tool__icon"><img src="assets/tools/gemini.svg" alt="Gemini" width="24" height="24"></span></li>
-            <li class="tool"><span class="tool__icon"><img src="assets/tools/openclaw.svg" alt="OpenClaw" width="24" height="24"></span></li>
-            <li class="tool"><span class="tool__icon"><img src="assets/tools/hermes-agent.svg" alt="Hermes Agent" width="24" height="24"></span></li>
-            <li class="tool"><span class="tool__icon"><img src="assets/tools/codex.svg" alt="Codex" width="24" height="24"></span></li>
-          </ul>
-          <ul class="marquee__track" aria-hidden="true">
-            <li class="tool" aria-hidden="true"><span class="tool__icon"><img src="assets/tools/claude-code.svg" alt="" width="24" height="24"></span></li>
-            <li class="tool" aria-hidden="true"><span class="tool__icon"><img src="assets/tools/grok.svg" alt="" width="24" height="24"></span></li>
-            <li class="tool" aria-hidden="true"><span class="tool__icon"><img src="assets/tools/cursor.svg" alt="" width="24" height="24"></span></li>
-            <li class="tool" aria-hidden="true"><span class="tool__icon"><img src="assets/tools/loom.svg" alt="" width="24" height="24"></span></li>
-            <li class="tool" aria-hidden="true"><span class="tool__icon"><img src="assets/tools/gemini.svg" alt="" width="24" height="24"></span></li>
-            <li class="tool" aria-hidden="true"><span class="tool__icon"><img src="assets/tools/openclaw.svg" alt="" width="24" height="24"></span></li>
-            <li class="tool" aria-hidden="true"><span class="tool__icon"><img src="assets/tools/hermes-agent.svg" alt="" width="24" height="24"></span></li>
-            <li class="tool" aria-hidden="true"><span class="tool__icon"><img src="assets/tools/codex.svg" alt="" width="24" height="24"></span></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Demo window (static, illustrative). Report numbers: 8 people x 2 hrs/day x 5 days = 80 hrs/week; 60% automated = 48 hrs saved; 80 -> 32 hrs; 48 / 40 = 1.2 extra people = +15% of 8; 48 x £22 = £1,056 -->
-      <div class="mac" role="region" aria-label="Example weekly report, operating system and inbox exchange">
-        <div class="mac__bar">
-          <div class="mac__lights" aria-hidden="true"><i class="r"></i><i class="y"></i><i class="g"></i></div>
-          <span class="mac__title">Flowlyy</span>
-          <span class="mac__live"><span class="dot" aria-hidden="true"></span>Illustrative example</span>
-        </div>
-
-        <div class="mac__body">
-          <div class="mac__tabs" role="group" aria-label="Choose a view">
-            <button class="chip" type="button" data-tab="report" aria-pressed="true">[Weekly report]</button>
-            <button class="chip" type="button" data-tab="os" aria-pressed="false">[Operating system]</button>
-            <button class="chip" type="button" data-tab="inbox" aria-pressed="false">[Inbox]</button>
-          </div>
-
-          <div class="mac__panel" data-panel="report">
-            <div class="mac__meta label">
-              <span>Week report // Founder plus team, evenings on email and reports</span>
-              <span>60% automated</span>
-            </div>
-
-            <div class="metrics">
-              <div class="metric">
-                <span class="label label--caption">Hours saved</span>
-                <p class="metric__value display">48 hrs</p>
-                <span class="metric__sub">every week</span>
-              </div>
-              <div class="metric">
-                <span class="label label--caption">Efficiency</span>
-                <p class="metric__value display">60%</p>
-                <span class="metric__sub">less time on admin</span>
-              </div>
-              <div class="metric">
-                <span class="label label--caption">Capacity gained</span>
-                <p class="metric__value display">+15%</p>
-                <span class="metric__sub">Like getting an extra day back each week</span>
-              </div>
-            </div>
-
-            <div class="bars">
-              <span class="label label--caption">Repetitive admin per week</span>
-              <div class="bar-row"><span class="label">Before</span><div class="bar"><i style="width:100%"></i></div><span class="label">80 hrs</span></div>
-              <div class="bar-row"><span class="label">After</span><div class="bar bar--after"><i style="width:40%"></i></div><span class="label">32 hrs</span></div>
-            </div>
-
-            <ul class="breakdown">
-              <li><span>Inbox triage and replies</span><b class="label">14 hrs</b></li>
-              <li><span>Reports and research pulled together</span><b class="label">12 hrs</b></li>
-              <li><span>Meeting prep and follow-ups</span><b class="label">12 hrs</b></li>
-              <li><span>Invoices and admin paperwork chased</span><b class="label">10 hrs</b></li>
-            </ul>
-
-            <p class="mac__note">Worth £1,056 a week at £22/hr. Example figures. Yours will differ, we'll scope the real numbers with you on a call.</p>
-          </div>
-
-          <div class="mac__panel" data-panel="os" hidden>
-            <div class="mac__meta label">
-              <span>Operating system // Tuesday 07:12</span>
-              <span>Everything drafted for approval</span>
-            </div>
-
-            <div class="metrics">
-              <div class="metric">
-                <span class="label label--caption">Needs your OK</span>
-                <p class="metric__value display">1</p>
-                <span class="metric__sub">waiting for you</span>
-              </div>
-              <div class="metric">
-                <span class="label label--caption">Handled for you</span>
-                <p class="metric__value display">3</p>
-                <span class="metric__sub">sent, filed or chased</span>
-              </div>
-              <div class="metric">
-                <span class="label label--caption">Flagged</span>
-                <p class="metric__value display">1</p>
-                <span class="metric__sub">job slipping</span>
-              </div>
-            </div>
-
-            <ul class="queue">
-              <li>
-                <span class="queue__kind label">Proposal</span>
-                <span class="queue__main"><b>Q3 client proposal</b><small>£8,400, drafted from your rate card</small></span>
-                <span class="queue__status queue__status--wait label">Awaiting your OK</span>
-              </li>
-              <li>
-                <span class="queue__kind label">Expense</span>
-                <span class="queue__main"><b>Software subscriptions, £340</b><small>Read, categorised and logged</small></span>
-                <span class="queue__status label">Filed</span>
-              </li>
-              <li>
-                <span class="queue__kind label">Invoice</span>
-                <span class="queue__main"><b>INV-0214, 12 days overdue</b><small>Polite chase sent on schedule</small></span>
-                <span class="queue__status label">Chased</span>
-              </li>
-              <li>
-                <span class="queue__kind label">Research</span>
-                <span class="queue__main"><b>Competitor pricing brief</b><small>No summary sent yet</small></span>
-                <span class="queue__status queue__status--flag label">Slipping</span>
-              </li>
-              <li>
-                <span class="queue__kind label">Follow-up</span>
-                <span class="queue__main"><b>Intro call with a prospect</b><small>Chased after 48 hours, they said yes</small></span>
-                <span class="queue__status label">Answer received</span>
-              </li>
-            </ul>
-
-            <p class="mac__note">It does the typing. You keep the final say. Example data.</p>
-          </div>
-
-          <div class="mac__panel" data-panel="inbox" hidden>
-            <div class="mac__meta label">
-              <span>Illustrative inbox // Incoming 09:14</span>
-              <span>Type: Client email // Drafted from your last 10 replies</span>
-            </div>
-            <ul class="transcript">
-              <li><span class="who label">Client</span><p>Can we move Thursday's call to Friday afternoon? Also need the updated proposal before then.</p></li>
-              <li><span class="who who--agent label">Agent</span><p>Drafted a reply confirming Friday 2pm, with the updated proposal attached and this week's numbers filled in. Ready for your OK.</p></li>
-              <li><span class="who label">Client</span><p>Friday works, thanks for the quick turnaround.</p></li>
-              <li><span class="who label label--accent">Sent</span><p class="sms">Reply sent. Proposal attached. Calendar updated.</p></li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="mac__foot label">
-          <span>Illustrative example, not a client result</span>
-        </div>
-      </div>
-    </section>
-
-    <div class="divider" role="separator" aria-hidden="true"></div>
-
-    <!-- Products -->
-    <section class="section section--pure section--compact" id="services" aria-labelledby="product-title">
-      <div class="wrap">
-        <div class="section__head">
-          <div>
-            <h2 id="product-title" class="display display--lg">What do you want off your plate?</h2>
-          </div>
-          <div class="filters" role="group" aria-label="Filter products">
-            <button class="chip" type="button" data-filter="all" aria-pressed="true">[All]</button>
-            <button class="chip" type="button" data-filter="os" aria-pressed="false">[Operating System]</button>
-            <button class="chip" type="button" data-filter="advisory" aria-pressed="false">[Advisory]</button>
-            <button class="chip" type="button" data-filter="learn" aria-pressed="false">[Learn AI]</button>
-          </div>
-        </div>
-
-        <div class="grid grid--3">
-          <!-- 01 AI Operating System -->
-          <article class="card" data-category="os">
-            <div class="card__body">
-              <div class="card__title">
-                <h3>AI Operating System</h3>
-                <span class="label label--caption">Systems / 2026</span>
-              </div>
-              <p class="card__tagline">Runs the work that eats your evenings.</p>
-              <p class="card__copy">Emails drafted, reports pulled together, research summarised, invoices chased, all built around how you already work. Everything waits for your OK before it goes anywhere.</p>
-              <ul class="card__list">
-                <li>Drafted for your approval, always</li>
-                <li>Built around your tools, not a generic template</li>
-                <li>Nothing sent or filed without your OK</li>
-              </ul>
-              <div class="card__foot label">
-                <span>Start with one problem or connect the lot</span>
-                <a href="#pricing">See how it works →</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- 02 Consulting -->
-          <article class="card" data-category="advisory">
-            <div class="card__body">
-              <div class="card__title">
-                <h3>Consulting</h3>
-                <span class="label label--caption">Strategy / 2026</span>
-              </div>
-              <p class="card__tagline">A paid audit you can walk away with.</p>
-              <p class="card__copy">We walk through how you work, tell you what's costing you time and rank what to fix first. Credited in full against any build within 60 days.</p>
-              <ul class="card__list">
-                <li>1:1 consulting, no retainer needed</li>
-                <li>Done-for-you builds scoped around your work</li>
-                <li>A plan, the right tools, and training for you or your team</li>
-              </ul>
-              <div class="card__foot label">
-                <span>Start with a plan you can keep</span>
-                <a href="https://cal.com/divine-uchenna-amakiri/discovery-call">Book a call →</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- 03 Learn AI -->
-          <article class="card" data-category="learn">
-            <div class="card__body">
-              <div class="card__title">
-                <h3>Learn AI</h3>
-                <span class="label label--caption">Education / 2026</span>
-              </div>
-              <p class="card__tagline">Stop prompting. Start building.</p>
-              <p class="card__copy">Training for founders, professionals and students on using AI agents for real work: research, writing, business ops, not just asking questions in a chat box.</p>
-              <ul class="card__list">
-                <li>Live and self-paced training</li>
-                <li>Built for people who already use ChatGPT or Claude</li>
-                <li>From one prompt to a system that runs itself</li>
-              </ul>
-              <div class="card__foot label">
-                <span>Curious where to start?</span>
-                <a href="https://cal.com/divine-uchenna-amakiri/discovery-call">Book a call →</a>
-              </div>
-            </div>
-          </article>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Specimen grid -->
-    <section class="section section--pure section--compact" id="product" aria-labelledby="specs-title">
-      <div class="wrap">
-        <div class="section__head">
-          <div>
-            <span class="label label--caption">How it works // All services</span>
-            <h2 id="specs-title" class="display display--lg">What we do</h2>
-          </div>
-        </div>
-
-        <div class="wwd">
-          <article class="wwd__row">
-            <header class="wwd__head">
-              <h3>AI Operating System</h3>
-              <p>Runs your emails, reports, research and admin. You keep the final say.</p>
-            </header>
-            <div class="wwd__body">
-              <div class="flow">
-                <span class="label label--caption">Work comes in</span>
-                <ol><li class="flow__node">Email or task in</li><li class="flow__arrow" aria-hidden="true">&rarr;</li><li class="flow__node">Drafted for you</li><li class="flow__arrow" aria-hidden="true">&rarr;</li><li class="flow__node flow__node--key">You approve</li><li class="flow__arrow" aria-hidden="true">&rarr;</li><li class="flow__node">Sent or filed</li></ol>
-              </div>
-
-              <div class="flow">
-                <span class="label label--caption">Weekly report</span>
-                <ol><li class="flow__node">Work tracked</li><li class="flow__arrow" aria-hidden="true">&rarr;</li><li class="flow__node flow__node--key">Report built</li><li class="flow__arrow" aria-hidden="true">&rarr;</li><li class="flow__node">In your inbox Monday</li></ol>
-              </div>
-
-              <dl class="stats">
-                <div><dd class="stats__value display">Drafted</dd><dt class="label label--caption">Everything, before it goes out</dt></div>
-                <div><dd class="stats__value display">Your OK</dd><dt class="label label--caption">Before anything is sent</dt></div>
-                <div><dd class="stats__value display">Weekly</dd><dt class="label label--caption">Report in your inbox</dt></div>
-                <div><dd class="stats__value display">Your tools</dd><dt class="label label--caption">Built around what you already use</dt></div>
-              </dl>
-            </div>
-          </article>
-
-          <article class="wwd__row">
-            <header class="wwd__head">
-              <h3>Consulting</h3>
-              <p>A paid audit first, then a build if you want one.</p>
-            </header>
-            <div class="wwd__body">
-              <div class="flow">
-                <span class="label label--caption">How it runs</span>
-                <ol><li class="flow__node">Walk through your work</li><li class="flow__arrow" aria-hidden="true">&rarr;</li><li class="flow__node flow__node--key">Ranked plan</li><li class="flow__arrow" aria-hidden="true">&rarr;</li><li class="flow__node">Build it with you or for you</li></ol>
-              </div>
-
-              <dl class="stats">
-                <div><dd class="stats__value display">Ranked</dd><dt class="label label--caption">What to fix first</dt></div>
-                <div><dd class="stats__value display">60 days</dd><dt class="label label--caption">Credited in full</dt></div>
-                <div><dd class="stats__value display">Fixed scope</dd><dt class="label label--caption">Agreed before we build</dt></div>
-                <div><dd class="stats__value display">1:1</dd><dt class="label label--caption">Advice and implementation</dt></div>
-              </dl>
-            </div>
-          </article>
-
-          <article class="wwd__row">
-            <header class="wwd__head">
-              <h3>Learn AI</h3>
-              <p>Training that goes past prompting into building systems.</p>
-            </header>
-            <div class="wwd__body">
-              <div class="flow">
-                <span class="label label--caption">How it runs</span>
-                <ol><li class="flow__node">Where you are now</li><li class="flow__arrow" aria-hidden="true">&rarr;</li><li class="flow__node flow__node--key">What to build</li><li class="flow__arrow" aria-hidden="true">&rarr;</li><li class="flow__node">You run it yourself</li></ol>
-              </div>
-
-              <dl class="stats">
-                <div><dd class="stats__value display">Live + self-paced</dd><dt class="label label--caption">Learn at your pace</dt></div>
-                <div><dd class="stats__value display">Beginner friendly</dd><dt class="label label--caption">If you can use ChatGPT, you're ready</dt></div>
-                <div><dd class="stats__value display">Real work</dd><dt class="label label--caption">Research, writing, business ops</dt></div>
-                <div><dd class="stats__value display">Yours to keep</dd><dt class="label label--caption">Systems you built stay yours</dt></div>
-              </dl>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Ways to work together -->
-    <section class="section section--compact" id="pricing" aria-labelledby="pricing-title">
-      <div class="wrap">
-        <div class="ledger">
-          <div class="ledger__head">
-            <h2 id="pricing-title">Ways to work together</h2>
-          </div>
-
-          <div class="tiers">
-          <article class="tier">
-            <header class="tier__head">
-              <h3 class="tier__name">Systems</h3>
-              <span class="label label--caption">AI Operating System</span>
-              <p class="tier__for">For founders and professional teams where the day still runs on email, research and manual follow-up.</p>
-            </header>
-            <ul class="tier__rows">
-            <li class="tier__row">
-              <h4 class="tier__item">Single workflow</h4>
-              <p>Start with the one thing costing you the most time: inbox, reporting, research or admin.</p>
-            </li>
-            <li class="tier__row">
-              <h4 class="tier__item">Connected system</h4>
-              <p>Connect a few parts of your work so information stops getting copied between tools by hand.</p>
-            </li>
-            <li class="tier__row">
-              <h4 class="tier__item">Full operating system</h4>
-              <p>Inbox, reports, research and admin working as one system, drafted for your OK.</p>
-            </li>
-            </ul>
-            <a class="btn tier__cta" href="https://cal.com/divine-uchenna-amakiri/discovery-call">Book a call →</a>
-          </article>
-
-          <article class="tier">
-            <header class="tier__head">
-              <h3 class="tier__name">Advisory</h3>
-              <span class="label label--caption">Consulting</span>
-              <p class="tier__for">For anyone who wants a plan first, or would rather have it built for them.</p>
-            </header>
-            <ul class="tier__rows">
-            <li class="tier__row">
-              <h4 class="tier__item">Operations audit</h4>
-              <p>Ranked plan, credited in full against any build within 60 days.</p>
-            </li>
-            <li class="tier__row">
-              <h4 class="tier__item">Fixed scope project</h4>
-              <p>Fixed scope, built with you.</p>
-            </li>
-            <li class="tier__row">
-              <h4 class="tier__item">Advisory retainer</h4>
-              <p>1:1 time on strategy and implementation.</p>
-            </li>
-            <li class="tier__row">
-              <h4 class="tier__item">Done-for-you build</h4>
-              <p>Systems built around how you actually work.</p>
-            </li>
-            </ul>
-            <a class="btn tier__cta" href="https://cal.com/divine-uchenna-amakiri/discovery-call">Book an audit →</a>
-          </article>
-
-          <article class="tier">
-            <header class="tier__head">
-              <h3 class="tier__name">Learn</h3>
-              <span class="label label--caption">Education</span>
-              <p class="tier__for">For founders, professionals and students who want to build the skill themselves.</p>
-            </header>
-            <ul class="tier__rows">
-            <li class="tier__row">
-              <h4 class="tier__item">Self-paced</h4>
-              <p>Learn the fundamentals of building with AI agents, at your own pace.</p>
-            </li>
-            <li class="tier__row">
-              <h4 class="tier__item">Live cohort</h4>
-              <p>Work through real projects with feedback, alongside other people building the same thing.</p>
-            </li>
-            </ul>
-            <a class="btn tier__cta" href="https://cal.com/divine-uchenna-amakiri/discovery-call">Book a call →</a>
-          </article>
-          </div>
-
-          <p class="ledger__note label">We cover scope and pricing on the sales call, once we know what will actually help.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Founder letter -->
-    <section class="section section--compact letter-band" id="letter" aria-labelledby="letter-title">
-      <div class="wrap">
-        <h2 id="letter-title" class="display display--lg letter__title">An honest letter from the founder</h2>
-
-        <div class="island" data-island>
-          <div class="island__bar">
-            <div class="island__bar-inner">
-              <button class="btn btn--lg island__pill" type="button" aria-expanded="false" aria-controls="letter-panel">Read the founder letter</button>
-            </div>
-          </div>
-
-          <div class="island__panel" id="letter-panel">
-            <div class="island__panel-inner">
-              <button class="island__close" type="button" aria-label="Close the letter">
-                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg>
-              </button>
-              <article class="letter">
-
-          <header class="letter__head">
-            <img class="letter__photo" src="assets/founder/divine.jpg" alt="Divine, founder of Flowlyy" width="88" height="88">
-            <dl class="letter__meta">
-              <div><dt>To</dt><dd>You</dd></div>
-              <div><dt>From</dt><dd>Divine, Flowlyy</dd></div>
-              <div><dt>Re</dt><dd>Why I built Flowlyy</dd></div>
-            </dl>
-          </header>
-
-          <div class="letter__body">
-            <p>You didn't get into this to spend your evenings on email and admin. You got into it because you're good at the actual work.</p>
-            <p>A chatbot answers a question and forgets it by tomorrow. It doesn't draft the reply, chase what's overdue, or pull the report together while you're doing the work that matters. <mark>Knowing AI exists and actually using it are two different things</mark>, and that gap is where most people get stuck.</p>
-            <p>My background is cybersecurity, not software. I build everything with AI instead of hand-coding it, because <mark>speed beats perfect</mark>. That's the whole philosophy behind Flowlyy.</p>
-            <p>So I build AI operating systems. For founders, it runs the emails, reports and admin that eat the evening. For professionals and students, it runs the research and writing that eats the week. Everything is drafted for your approval. <mark>It does the typing, you keep the final say.</mark></p>
-            <p>Here's the honest take: book a call and you walk away with a plan, <mark>whether you work with me or not</mark>.</p>
-            <p>I'd like to hear how your week actually goes. <a href="https://cal.com/divine-uchenna-amakiri/discovery-call">Let's chat</a>.</p>
-          </div>
-
-          <footer class="letter__sign">
-            <span class="letter__signature">Divine</span>
-          </footer>
-        </article>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="section section--pure section--compact" id="faq" aria-labelledby="faq-title">
-      <div class="wrap">
-        <div class="faq">
-          <div class="section__head">
-            <div>
-              <span class="label label--caption">Questions</span>
-              <h2 id="faq-title" class="display display--lg">Frequently asked questions</h2>
-            </div>
-          </div>
-
-          <details class="faq__item" name="faq">
-            <summary class="btn faq__q"><span>What does the AI Operating System do?</span></summary>
-            <div class="faq__a"><p>It runs the parts of your day that eat your evenings.</p><ul><li>Drafts emails, replies and follow-ups for your review.</li><li>Pulls research and reports together into one place.</li><li>Chases invoices, tasks and replies until they're done.</li><li>Flags anything that's slipping before it becomes a problem.</li></ul></div>
-          </details>
-          <details class="faq__item" name="faq">
-            <summary class="btn faq__q"><span>Will it send things without my say?</span></summary>
-            <div class="faq__a"><p>No. Everything is drafted for your approval. It does the typing. You keep the final say.</p></div>
-          </details>
-          <details class="faq__item" name="faq">
-            <summary class="btn faq__q"><span>What does it cost?</span></summary>
-            <div class="faq__a"><p>It depends on what you want off your plate and how much needs connecting. We cover scope and price on the call, once we understand what you actually need.</p></div>
-          </details>
-          <details class="faq__item" name="faq">
-            <summary class="btn faq__q"><span>What do I get from the audit?</span></summary>
-            <div class="faq__a"><p>We walk through how you work, tell you what's costing you and rank what to fix. You keep the plan whether you work with us or not.</p><p>If you build with us within 60 days, the audit is credited in full.</p></div>
-          </details>
-          <details class="faq__item" name="faq">
-            <summary class="btn faq__q"><span>Is this only for businesses?</span></summary>
-            <div class="faq__a"><p>No. Founders use it to run emails, reports and admin. Professionals and students use it for research, writing and the busywork that isn't actually the hard part of the job.</p></div>
-          </details>
-          <details class="faq__item" name="faq">
-            <summary class="btn faq__q"><span>I already use ChatGPT or Claude. Why do I need this?</span></summary>
-            <div class="faq__a"><p>A chat window answers one question at a time and forgets it tomorrow. An AI operating system remembers your work, drafts things without being asked, and keeps a queue of what's waiting on you.</p></div>
-          </details>
-          <details class="faq__item" name="faq">
-            <summary class="btn faq__q"><span>Should I book consulting or have you build it?</span></summary>
-            <div class="faq__a"><p><strong>Book 1:1 consulting</strong> if you want to understand it before you commit to anything. It's a one-off booking with no retainer, covering a plan, the right tools, and training for you or your team.</p><p><strong>Choose done-for-you</strong> if you'd rather have it built. We agree scope on the call, then build the system for you.</p><p>Not sure which? Start with the audit.</p></div>
-          </details>
-
-          <div class="faq__more">
-            <p>Still have a question?</p>
-            <a class="btn" href="https://cal.com/divine-uchenna-amakiri/discovery-call">Book a discovery call →</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <div class="divider" role="separator" aria-hidden="true"></div>
-
-  <footer class="site-footer">
-    <div class="wrap site-footer__grid">
-      <div class="site-footer__side">
-        <nav aria-label="Footer">
-          <ul class="foot-links">
-            <li><a href="#services">Services</a></li>
-            <li><a href="#product">Product</a></li>
-            <li><a href="#pricing">Ways to work</a></li>
-            <li><a href="https://cal.com/divine-uchenna-amakiri/discovery-call">Book a call</a></li>
-          </ul>
-        </nav>
-
-        <!-- TODO: replace with the real profile URLs -->
-        <div class="socials">
-          <a class="btn btn--social" href="https://www.linkedin.com/in/divineamakiri/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="assets/tools/linkedin.svg" alt="" width="18" height="18"></a>
-          <a class="btn btn--social" href="https://x.com/FlowlyybuildsAI" target="_blank" rel="noopener noreferrer" aria-label="X"><img src="assets/tools/x.svg" alt="" width="18" height="18"></a>
-          <a class="btn btn--social" href="https://www.instagram.com/divinebiz_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="assets/tools/instagram.svg" alt="" width="18" height="18"></a>
-        </div>
-
-        <div class="site-footer__sub">
-          <!-- TODO: point action at the real newsletter endpoint -->
-          <form class="dispatch" data-form="dispatch" action="#" method="post">
-            <label class="visually-hidden" for="dispatch-email">Email address</label>
-            <input id="dispatch-email" type="email" name="email" required autocomplete="email" placeholder="Your email">
-            <button class="btn" type="submit">Subscribe</button>
-          </form>
-          <p class="form-status" role="status" aria-live="polite" data-status></p>
-        </div>
-
-        <p class="site-footer__legal label">© 2026 Flowlyy. All rights reserved.</p>
-      </div>
-
-      <div class="foot-mark" aria-hidden="true"><span>flowlyy</span></div>
-    </div>
-  </footer>
-
-  <script src="js/script.js" defer></script>
+})();
+</script>
 </body>
 </html>
